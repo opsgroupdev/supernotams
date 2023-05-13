@@ -1,6 +1,6 @@
 <script setup>
 import {Head, useForm} from "@inertiajs/vue3";
-import {ref, defineProps, onMounted} from "vue";
+import {ref, onMounted} from "vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";

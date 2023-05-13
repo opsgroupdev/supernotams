@@ -6,9 +6,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::resource('notam', NotamController::class)->only(['index', 'store']);
+Route::get('/', [NotamController::class, 'index'])->name('notam.index');
+Route::post('/', [NotamController::class, 'store'])->name('notam.store');
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => false,

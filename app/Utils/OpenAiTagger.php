@@ -80,7 +80,7 @@ class OpenAiTagger
             ],
             [
                 'role'    => 'user',
-                'content' => "You are a NOTAM Librarian. I will give you a number of NOTAM messages. Each start with an identity key then a colon. Create a JSON array object with the following 4 fields per notam:\n'key': The notam identity key.\n'TagName': Choose the most logical Tag for this NOTAM from the list of Tags.\n'TagCode': The code for the selected Tag Name.\n'Explanation': In very simple English only, explain the NOTAM in 7 words or less. Do not use abbreviations. Use sentence case.",
+                'content' => "You are a NOTAM Librarian. I will give you a number of NOTAM messages. Each start with an identity key then a colon. Create a JSON array object with the following 4 fields per notam:\n'key': The notam identity key.\n'TagName': Choose the most logical Tag for this NOTAM from the list of Tags.\n'TagCode': The code for the selected Tag Name.\n'Explanation': In very simple English only, explain the NOTAM in a maximum of seven words, use sentence case, but do not use abbreviations.",
             ],
         ];
     }
@@ -191,11 +191,16 @@ class OpenAiTagger
 
     protected function rateLimitTaggingRequestFor($chunk)
     {
+        if (RateLimiter::tooManyAttempts('open_ai_api_request', $perMinute = 3)) {
+            $seconds = RateLimiter::availableIn('open_ai_api_request');
+            sleep($seconds + 3);
+        }
+
         return RateLimiter::attempt(
             'open_ai_api_request',
-            8, //number of attempts
+            3, //number of attempts
             fn () => $this->tagChunk($chunk),
-            80 //every xx seconds
+            60 //every xx seconds
         );
     }
 
