@@ -191,14 +191,14 @@ class OpenAiTagger
 
     protected function rateLimitTaggingRequestFor($chunk)
     {
-        if (RateLimiter::tooManyAttempts('open_ai_api_request', $perMinute = 3)) {
+        if (RateLimiter::tooManyAttempts('open_ai_api_request', $perMinute = 60)) {
             $seconds = RateLimiter::availableIn('open_ai_api_request');
             sleep($seconds + 3);
         }
 
         return RateLimiter::attempt(
             'open_ai_api_request',
-            3, //number of attempts
+            60, //number of attempts
             fn () => $this->tagChunk($chunk),
             60 //every xx seconds
         );
