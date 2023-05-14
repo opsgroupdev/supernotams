@@ -37,6 +37,10 @@ class OpenAiTagger
 
     private function optimallyGroupNotams(): void
     {
+//        $this->chunkedNotams = $this->notams
+//            ->collapse()
+//            ->chunk(1);
+
         $totalTokens = 0;
         $promptTokens = $this->getTokenizer()->count(collect(self::prompt())->pluck('content')->implode(' '));
         $maxTokensPerRequest = 4000 - $promptTokens;
@@ -185,27 +189,30 @@ class OpenAiTagger
     protected function tagAllNotams(): Collection
     {
         return $this->chunkedNotams
-            ->map(fn (Collection $notamChunk) => $this->rateLimitTaggingRequestFor($notamChunk))
+            ->map(fn (Collection $notamChunk, $chunkNumber) => $this->rateLimitTaggingRequestFor($notamChunk, ++$chunkNumber, ))
             ->collapse();
     }
 
-    protected function rateLimitTaggingRequestFor($chunk)
+    protected function rateLimitTaggingRequestFor($chunk, $chunkNumber)
     {
         if (RateLimiter::tooManyAttempts('open_ai_api_request', $perMinute = 60)) {
             $seconds = RateLimiter::availableIn('open_ai_api_request');
+            $this->sendUpdate(sprintf("Oops! - We're waiting for the api. We're hitting limits. Pausing for %s seconds", $seconds));
             sleep($seconds + 3);
         }
 
         return RateLimiter::attempt(
             'open_ai_api_request',
             60, //number of attempts
-            fn () => $this->tagChunk($chunk),
+            fn () => $this->tagChunk($chunk, $chunkNumber),
             60 //every xx seconds
         );
     }
 
-    protected function tagChunk(Collection $notams): array
+    protected function tagChunk(Collection $notams, $chunkNumber): array
     {
+        $this->sendUpdate(sprintf("Ok processing batch number %s of %s containing %s notams", $chunkNumber, $this->chunkedNotams->count(), count($notams)));
+
         $content = $notams->map(fn (array $notam) => "{$notam['key']}: {$notam['text']}")->implode("\n\n\n\n");
 
         $response = OpenAI::chat()->create([
@@ -214,12 +221,7 @@ class OpenAiTagger
             'messages'    => array_merge(self::prompt(), [['role' => 'user', 'content' => $content]]),
         ]);
 
-        if ($this->channelName) {
-            event(new NotamProcessingEvent(
-                $this->channelName,
-                sprintf("Phewf! - We've just processed a batch of %s Notams!", count($notams))
-                ));
-        }
+        $this->sendUpdate(sprintf("Phewf Success! - We've just processed a batch of %s Notams!", count($notams)));
 
         return json_decode($response->choices[0]->message->content, true);
     }
@@ -236,5 +238,12 @@ class OpenAiTagger
         return collect($notam)
             ->union($taggedData->firstWhere('key', $notam['key']))
             ->toArray();
+    }
+
+    protected function sendUpdate(string $message): void
+    {
+        if ($this->channelName) {
+            event(new NotamProcessingEvent($this->channelName, $message));
+        }
     }
 }
