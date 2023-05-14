@@ -17,6 +17,8 @@ use OpenAI\Laravel\Facades\OpenAI;
 
 class NotamProcessJob implements ShouldQueue
 {
+    public int $timeout = 600;
+
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public function __construct(protected $flightPlan, protected $channelName)
@@ -38,7 +40,7 @@ class NotamProcessJob implements ShouldQueue
 //            ->pluck('notams.0') //Data is buried in another array
 //            ->mapWithKeys(fn (array $notamData) => [$notamData['code'] => $notamData['list']]);
 
-        event(new NotamProcessingEvent($this->channelName, "My goodness! What a lot of Notams you've asked for! - I've just received {$notams->collapse()->count()} of them! Time to process. This might take a while."));
+        event(new NotamProcessingEvent($this->channelName, "My goodness! What a lot of Notams you've asked for! - I've just received {$notams->collapse()->count()} of them!<br /><br /> Time to process them. This might take a while."));
 
         $taggedNotams = OpenAiTagger::tag($notams, $this->channelName);
 //        $taggedNotams  = json_decode(file_get_contents(base_path('tests/source/alltagged.json')), true);
