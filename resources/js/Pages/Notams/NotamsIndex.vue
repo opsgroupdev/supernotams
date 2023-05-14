@@ -23,6 +23,7 @@ const form = useForm({
 let progressMessage = ref();
 let progressType = ref();
 let result = ref('');
+let expandedNotam = ref(null);
 
 onMounted(() => {
     Echo.channel(props.session_id)
@@ -53,11 +54,14 @@ const closeModal = () => {
     result.value = '';
 };
 
+const toggleDetails = (notamId) => {
+    expandedNotam.value = expandedNotam.value === notamId ? null : notamId;
+};
 </script>
 
 <template>
-        <div class="min-h-screen bg-gray-100 py-6 justify-center sm:py-12">
-    <form @submit.prevent="submit">
+    <div class="min-h-screen bg-gray-100 py-6 justify-center sm:py-12">
+        <form @submit.prevent="submit">
             <div class="relative py-3 sm:max-w-4xl sm:mx-auto">
                 <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
                     <div class="max-w-2xl mx-auto">
@@ -123,31 +127,39 @@ const closeModal = () => {
                     </div>
                 </div>
             </div>
-    </form>
-            <Modal :show="result !== ''" @close="closeModal" max-width="3xl">
-                <div v-for="(airport, name) in result" class="p-6">
-                    <h1 class="p-3 text-xl text-center text-gray-700">Airport {{name}}</h1>
-                    <table class="table w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-white uppercase bg-gray-600 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th class="px-6 py-3">Notam ID</th>
-                            <th class="px-6 py-3">Code</th>
-                            <th class="px-6 py-3">Notam Name</th>
-                            <th class="px-6 py-3">Explanation</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="odd:bg-white even:bg-gray-100" v-for="notam in airport">
-                            <td class="px-6 py-3" v-text="notam.id"></td>
+        </form>
+        <Modal :show="result !== ''" @close="closeModal" max-width="3xl">
+            <div v-for="(airport, name) in result" class="p-6">
+                <h1 class="p-3 text-xl text-center text-gray-700">Airport {{ name }}</h1>
+                <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-white uppercase bg-gray-600 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th class="px-6 py-3 w-28">Notam ID</th>
+                        <th class="px-6 py-3 w-12">Code</th>
+                        <th class="px-6 py-3 w-40">Notam Name</th>
+                        <th class="px-6 py-3">Explanation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <template v-for="notam in airport">
+                        <tr class="odd:bg-white even:bg-gray-100">
+                            <td class="px-6 py-3 cursor-pointer text-blue-600 underline" @click="toggleDetails(notam.id)">
+                                {{ notam.id }}
+                            </td>
                             <td class="px-6 py-3" v-text="notam.TagCode"></td>
-                            <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white" v-text="notam.TagName"></td>
+                            <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                v-text="notam.TagName"></td>
                             <td class="px-6 py-3" v-text="notam.Explanation"></td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </Modal>
-        </div>
+                        <tr v-if="expandedNotam === notam.id" class="bg-gray-200">
+                            <td colspan="4" class="px-6 py-4 font-mono whitespace-pre" v-text="notam.rawtext"></td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </div>
+        </Modal>
+    </div>
 </template>
 
 <style scoped>
