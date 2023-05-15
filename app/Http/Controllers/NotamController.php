@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\NotamProcessJob;
+use App\Jobs\NotamProcessingJob;
 use App\Rules\IsAtcFlightPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -19,11 +19,11 @@ class NotamController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'flight_plan' => ['required', 'string', new IsAtcFlightPlan]
+            'flight_plan' => ['required', 'string', new IsAtcFlightPlan],
         ]);
 
-        dispatch(new NotamProcessJob(trim($validated['flight_plan']), Session::getId()));
+        NotamProcessingJob::dispatch($validated['flight_plan'], Session::getId());
 
-        return redirect()->route('notam.index');
+        //        return redirect()->route('notam.index');
     }
 }
