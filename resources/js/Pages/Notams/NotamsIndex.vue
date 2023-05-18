@@ -139,8 +139,8 @@ const toggleDetails = (notamId) => {
                                 <tr>
                                     <th class="px-6 py-3 w-28">Notam ID</th>
                                     <th class="px-6 py-3 w-12">Code</th>
-                                    <th class="px-6 py-3 w-40">Notam Name</th>
-                                    <th class="px-6 py-3">Explanation</th>
+                                    <th class="px-6 py-3 w-40">Category</th>
+                                    <th class="px-6 py-3">Summary</th>
                                 </tr>
                                 </thead>
                                 <tbody>
