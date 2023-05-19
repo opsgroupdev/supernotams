@@ -11,6 +11,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
 
 class OpenAITagger implements Tagger
@@ -141,7 +142,14 @@ class OpenAITagger implements Tagger
 
     protected function tagChunks(): Collection
     {
-        $this->updateMessage(sprintf('We are currently sending %s batches of notam requests simultaneously, totaling %s notams. Please be patient as this may take some time.', $this->chunkedNotams->count(), $this->chunkedNotams->collapse()->count()));
+        $startTime = now();
+        $this->updateMessage(
+            sprintf(
+                "We are currently sending %s batches of notam requests simultaneously, totaling %s notams. Please be patient as this may take some time.\n\nStart Time is %s",
+                $this->chunkedNotams->count(),
+                $this->chunkedNotams->collapse()->count(),
+                $startTime->format('d-m-Y H:i:s')
+            ));
 
         $responses = Http::asJson()
             ->timeout(100)
@@ -153,7 +161,15 @@ class OpenAITagger implements Tagger
                     ->map(fn ($notamsContent) => $this->sendOpenAiRequest($pool, $notamsContent));
             });
 
-        $this->updateMessage(sprintf("Phewf Success! - We've just processed all %s Notams!", $this->chunkedNotams->collapse()->count()));
+        $elapsedSecondsFormatted = number_format(now()->diffInSeconds($startTime), 1);
+
+        $this->updateMessage(
+            sprintf("Phewf Success! - We've just processed all %s Notams!\n\n It took %s seconds for OpenAi to process everything.",
+                $this->chunkedNotams->collapse()->count(),
+                $elapsedSecondsFormatted)
+        );
+
+        Log::info("OpenAI took $elapsedSecondsFormatted seconds to process {$this->chunkedNotams->count()} batches of notams totaling {$this->chunkedNotams->collapse()->count()} notams.");
 
         return $this->formatResults($responses);
     }
