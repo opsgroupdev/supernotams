@@ -8,6 +8,7 @@ use Inertia\Inertia;
 
 Route::get('/', [NotamController::class, 'index'])->name('notam.index');
 Route::post('/', [NotamController::class, 'store'])->name('notam.store');
+Route::get('/download/{cacheKey}', [NotamController::class, 'show'])->name('notam.show');
 
 Route::get('/home', function () {
     return Inertia::render('Welcome', [
