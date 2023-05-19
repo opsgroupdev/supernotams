@@ -53,6 +53,7 @@ class NotamProcessingJob implements ShouldQueue
             event(new PdfResultEvent($this->channelName, $cacheKey));
 
         } catch (Throwable $throwable) {
+            report($throwable);
             $this->sendMessage($throwable->getMessage(), 'error');
         }
     }

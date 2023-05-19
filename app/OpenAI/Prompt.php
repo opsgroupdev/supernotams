@@ -15,7 +15,7 @@ class Prompt
                 'role' => 'user',
                 'content' => <<<'EOL'
 You are a NOTAM Librarian. I will give you a number of NOTAM messages. Each start with an identity key then a colon.
-Create a JSON array object with the following 4 fields per notam:
+Always create an array of JSON objects with the following 4 fields per notam:
 "key": The notam identity key.
 "TagName": Choose the most logical Tag for this NOTAM from the list of Tags.
 "TagCode": The code for the selected Tag Name.
