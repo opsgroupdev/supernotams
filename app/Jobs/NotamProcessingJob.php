@@ -5,9 +5,11 @@ namespace App\Jobs;
 use App\Actions\FlightPlanParser;
 use App\Actions\NotamMatrix;
 use App\Actions\NotamRetriever;
+use App\Actions\PDFCreator;
 use App\Contracts\Tagger;
 use App\Events\NotamProcessingEvent;
 use App\Events\NotamResultEvent;
+use App\Events\PdfResultEvent;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -30,6 +32,7 @@ class NotamProcessingJob implements ShouldQueue
         NotamRetriever $notamRetriever,
         Tagger $tagger,
         NotamMatrix $matrix,
+        PDFCreator $PDFCreator,
     ): void {
         try {
             $this->sendMessage('Extracting all data out of the ATC flightplan');
@@ -44,8 +47,11 @@ class NotamProcessingJob implements ShouldQueue
 
             $filteredNotams = $matrix->filter($airportsAndFirs, $taggedNotams);
             $this->sendMessage('We got them all! Sending the results');
-
             event(new NotamResultEvent($this->channelName, $filteredNotams));
+
+            $cacheKey = $PDFCreator->generate($filteredNotams);
+            event(new PdfResultEvent($this->channelName, $cacheKey));
+
         } catch (Throwable $throwable) {
             $this->sendMessage($throwable->getMessage(), 'error');
         }

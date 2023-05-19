@@ -1,6 +1,6 @@
 <script setup>
 import {useForm} from "@inertiajs/vue3";
-import {nextTick, onMounted, ref} from "vue";
+import {nextTick, onMounted, ref, watchEffect} from "vue";
 import InputError from "@/Components/InputError.vue";
 import Modal from "@/Components/Modal.vue";
 
@@ -16,6 +16,7 @@ const form = useForm({
 });
 
 const messageBox = ref(null);
+const fileKey = ref('');
 let progressMessage = ref([]);
 let result = ref('');
 let expandedNotam = ref(null);
@@ -28,6 +29,9 @@ onMounted(() => {
         })
         .listen("\\App\\Events\\NotamResultEvent", (event) => {
             result.value = event.data;
+        })
+        .listen("\\App\\Events\\PdfResultEvent", (event) => {
+            fileKey.value = event.key;
         });
 });
 
@@ -42,6 +46,19 @@ const scrollToLatestUpdate = () => {
         });
     }
 };
+
+watchEffect(() => {
+    if (fileKey.value !== '') {
+        const link = document.createElement('a');
+        link.href = `/download/${fileKey.value}`;
+        link.setAttribute('download', 'notampack.pdf');
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+});
+
 
 const tableColour = (notamSection, category) => {
     return {
@@ -119,7 +136,13 @@ const toggleDetails = (notamId) => {
         </form>
 
         <Modal :show="result !== '' || progressMessage.length > 0" @close="closeModal" max-width="3xl">
+            <div v-if="fileKey.value !== ''" class="p-4 w-1/2 mx-auto bg-yellow-300 flex justify-center items-center m-3 rounded underline text-blue-800">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 mr-3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25" />
+                </svg>
 
+                <a :href="`/download/${fileKey}`" target="_blank">Download Notam Briefing Pack</a>
+            </div>
             <div v-if="result !== ''" class="p-6">
                 <div v-for="(notamResults, notamSection) in result" class="p-6"
                      :class="{'bg-gray-400': notamSection === 'appendix'}">

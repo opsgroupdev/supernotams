@@ -17,6 +17,10 @@ export default {
             },
         },
     },
-
+    corePlugins: {
+        textOpacity: false,
+        backgroundOpacity: false,
+        borderOpacity: false,
+    },
     plugins: [forms],
 };
