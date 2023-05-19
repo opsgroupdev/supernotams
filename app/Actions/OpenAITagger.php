@@ -189,7 +189,7 @@ class OpenAITagger implements Tagger
         $elapsedSecondsFormatted = number_format(now()->diffInSeconds($startTime), 1);
 
         $this->updateMessage(
-            sprintf("Phewf Success! - We've just processed all %s Notams!\n\n It took %s seconds for OpenAi to process everything.",
+            sprintf("Phewf Success! - We've just processed all %s Notams!\n\n It took %s seconds for OpenAi to respond.",
                 $this->chunkedNotams->collapse()->count(),
                 $elapsedSecondsFormatted)
         );
