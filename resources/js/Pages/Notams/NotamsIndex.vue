@@ -47,17 +47,17 @@ const scrollToLatestUpdate = () => {
     }
 };
 
-watchEffect(() => {
-    if (fileKey.value !== '') {
-        const link = document.createElement('a');
-        link.href = `/download/${fileKey.value}`;
-        link.setAttribute('download', 'notampack.pdf');
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-});
+// watchEffect(() => {
+//     if (fileKey.value !== '') {
+//         const link = document.createElement('a');
+//         link.href = `/download/${fileKey.value}`;
+//         link.setAttribute('download', 'notampack.pdf');
+//         link.style.display = 'none';
+//         document.body.appendChild(link);
+//         link.click();
+//         document.body.removeChild(link);
+//     }
+// });
 
 
 const tableColour = (notamSection, category) => {

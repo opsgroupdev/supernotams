@@ -9,7 +9,7 @@ class Prompt
         return [
             [
                 'role' => 'user',
-                'content' => "A json array of NOTAM Tags, each tag has three columns: 'Tag Code', 'Tag Name', 'Tag Description': \n\n".Tags::asJson(),
+                'content' => "An array of NOTAM Tags, each tag has three columns: 'Tag Code', 'Tag Name', 'Tag Description': \n\n".Tags::all()->__toString(),
             ],
             [
                 'role' => 'user',

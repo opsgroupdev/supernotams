@@ -14,5 +14,5 @@ return [
 
     'api_key' => env('OPENAI_API_KEY'),
     'organization' => env('OPENAI_ORGANIZATION'),
-
+    'enable_log' => env('OPENAI_LOG_ENABLE', false),
 ];

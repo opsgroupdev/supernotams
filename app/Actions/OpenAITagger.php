@@ -7,7 +7,10 @@ use App\Events\NotamProcessingEvent;
 use App\OpenAI\Prompt;
 use Gioni06\Gpt3Tokenizer\Gpt3Tokenizer;
 use Gioni06\Gpt3Tokenizer\Gpt3TokenizerConfig;
+use GuzzleHttp\Client;
 use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\Utils;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
@@ -151,15 +154,37 @@ class OpenAITagger implements Tagger
                 $startTime->format('d-m-Y H:i:s')
             ));
 
-        $responses = Http::asJson()
-            ->timeout(100)
-            ->connectTimeout(100)
-            ->withHeaders(['Host' => 'api.openai.com'])
-            ->pool(function (Pool $pool) {
-                $this->chunkedNotams
-                    ->map(fn ($batch) => $this->createTextContent($batch))
-                    ->map(fn ($notamsContent) => $this->sendOpenAiRequest($pool, $notamsContent));
-            });
+        $client = $this->getClient();
+
+        $promises = $this->chunkedNotams
+            ->map(fn ($batch) => $this->createTextContent($batch))
+            ->map(fn ($text) => [
+                'model' => 'gpt-3.5-turbo',
+                'temperature' => 0,
+                'messages' => array_merge(
+                    Prompt::get(),
+                    [['role' => 'user', 'content' => $text]]
+                ),
+            ])
+            ->tap(function (Collection $prompts) {
+                if (config('openai.enable_log')) {
+                    Log::info('Current Prompts:', $prompts->toArray());
+                }
+            })
+            ->map(fn ($payload) => $client->postAsync('https://api.openai.com/v1/chat/completions', [
+                'json' => $payload,
+            ]))
+            ->toArray();
+
+        $responses = collect(Utils::unwrap($promises))
+            ->map(fn ($response) => json_decode($response->getBody(), true))
+            ->tap(function (Collection $responses) {
+                if (config('openai.enable_log')) {
+                    Log::info('Responses:', $responses->toArray());
+                }
+            })
+            ->map(fn ($chatResult) => json_decode($chatResult['choices'][0]['message']['content'], true))
+            ->collapse();
 
         $elapsedSecondsFormatted = number_format(now()->diffInSeconds($startTime), 1);
 
@@ -170,6 +195,18 @@ class OpenAITagger implements Tagger
         );
 
         Log::info("OpenAI took $elapsedSecondsFormatted seconds to process {$this->chunkedNotams->count()} batches of notams totaling {$this->chunkedNotams->collapse()->count()} notams.");
+
+        return $responses;
+
+        //        $responses = Http::asJson()
+        //            ->timeout(100)
+        //            ->connectTimeout(100)
+        //            ->withHeaders(['Host' => 'api.openai.com'])
+        //            ->pool(function (Pool $pool) {
+        //                $this->chunkedNotams
+        //                    ->map(fn ($batch) => $this->createTextContent($batch))
+        //                    ->map(fn ($notamsContent) => $this->sendOpenAiRequest($pool, $notamsContent));
+        //            });
 
         return $this->formatResults($responses);
     }
@@ -214,6 +251,9 @@ class OpenAITagger implements Tagger
             ->toArray();
     }
 
+    /**
+     * @param $results array<Response>
+     */
     protected function formatResults(array $results): Collection
     {
         return collect($results)
@@ -221,5 +261,17 @@ class OpenAITagger implements Tagger
                 return json_decode($response->json()['choices'][0]['message']['content'], true);
             })
             ->collapse();
+    }
+
+    protected function getClient(): Client
+    {
+        return new Client([
+            'timeout' => 100,
+            'connect_timeout' => 100,
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer '.config('openai.api_key'),
+            ],
+        ]);
     }
 }
