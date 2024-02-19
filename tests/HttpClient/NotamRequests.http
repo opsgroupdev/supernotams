@@ -1,0 +1,4 @@
+### Get notams from api server
+GET https://api.anbdata.com/anb/states/notams/notams-realtime-list?
+    api_key={{notamapikey}}&
+    locations=einn,eick
