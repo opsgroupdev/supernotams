@@ -2,6 +2,7 @@
 
 namespace App\Actions;
 
+use App\Enum\Airports;
 use Illuminate\Support\Collection;
 use Spatie\Regex\Regex;
 
@@ -14,13 +15,14 @@ class FlightPlanParser
 
     /**
      * @return Collection{
-     *     departureAirport: string,
-     *     destinationAirport: string,
-     *     destinationAlternates: array<string>,
-     *     firs: array<string>,
-     *     enrouteAlternates: array<string>,
-     *     takeoffAlternate: string,
+     *     departureAirport: Collection<string>,
+     *     destinationAirport: Collection<string>,
+     *     destinationAlternates: Collection<string>,
+     *     enrouteAlternates: Collection<string>,
+     *     takeoffAlternate: Collection<string>,
      * }
+     *
+     * @throws \Exception
      */
     public function parse($flightPlanText): Collection
     {
@@ -40,12 +42,20 @@ class FlightPlanParser
         preg_match_all('/\b[A-Z]{4}/i', $enrAlt, $enrAltMatches, PREG_PATTERN_ORDER);
 
         //Populate our array with all the data.
-        $flightplan['departureAirport'] = Regex::match('/[A-Z]{4}/i', $fields[2])->resultOr('');
-        $flightplan['destinationAirport'] = array_shift($destMatches[0]);
-        $flightplan['destinationAlternates'] = $destMatches[0];
-        $flightplan['firs'] = array_values(array_unique($firMatches[1]));
-        $flightplan['enrouteAlternates'] = $enrAltMatches[0] ?? [];
-        $flightplan['takeoffAlternate'] = Regex::match('/[A-Z]{4}/i', $takeOffAlt)->resultOr('');
+        $flightplan['departureAirport'] = collect([Regex::match('/[A-Z]{4}/i', $fields[2])->resultOr('')])->filter();
+        $flightplan['destinationAirport'] = collect([array_shift($destMatches[0])])->filter();
+        $flightplan['destinationAlternates'] = $destMatches[0] ? collect($destMatches[0]) : collect();
+        //        $flightplan['firs'] = array_values(array_unique($firMatches[1]));
+        $flightplan['enrouteAlternates'] = $enrAltMatches[0] ? collect($enrAltMatches[0]) : collect();
+        $flightplan['takeoffAlternate'] = collect([Regex::match('/[A-Z]{4}/i', $takeOffAlt)->resultOr('')])->filter();
+
+        //TODO This is for the demo only. Check to make sure only airports on the island of ireland are used.
+        $allowed = str(Airports::ALL)->upper()->explode(',');
+        $requested = $flightplan->flatten()->filter()->unique();
+
+        if ($requested->diff($allowed)->count() > 0) {
+            throw new \Exception('So sorry. But for this demo, all airports in the flight plan MUST be in Ireland');
+        }
 
         return $flightplan;
     }

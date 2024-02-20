@@ -28,10 +28,10 @@ class PDFCreator
                 ->setPaper('a4')
                 ->setOrientation('portrait')
                 ->setOptions([
-                    'margin-top' => '4mm',
+                    'margin-top'    => '4mm',
                     'margin-bottom' => '4mm',
-                    'margin-left' => '3mm',
-                    'margin-right' => '3mm',
+                    'margin-left'   => '3mm',
+                    'margin-right'  => '3mm',
                 ])
                 ->output();
 
