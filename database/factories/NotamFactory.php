@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enum\Airports;
 use App\Enum\NotamStatus;
 use App\Models\Notam;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -13,15 +14,20 @@ class NotamFactory extends Factory
 
     public function definition(): array
     {
-        $uniqueId = $this->faker->unique()->bothify('????????');
+        //$airport = $this->faker->randomElement(str(Airports::ALL)->upper()->explode(',')->toArray());
+        //$notamId = $this->faker->unique()->bothify('????????');
+        //$id = $notamId."-$airport";
 
         return [
-            'id'        => $uniqueId,
-            'structure' => json_encode([
-                'key'     => $uniqueId,
-                'all'     => "$uniqueId NOTAMN\nQ) EISN/QMXLC/IV/BO /A /000/999/5325N00616W005\nA) EIDW B) 2402202300 C) 2402240600\nD) DAILY 2300-0600\nE) TWY K CLOSED\nCREATED: 16 Feb 2024 15:52:00 \nSOURCE: EUECYIYN",
-                'Created' => $this->faker->dateTimeBetween('-1 week', '+1 week')->format('c'),
-            ]),
+            'id'        => $this->faker->unique()->regexify('[ABC]\d{4}\/2[3-4]').'-'.$this->faker->randomElement(str(Airports::ALL)->upper()->explode(',')->toArray()),
+            'structure' => function (array $attributes) {
+                return [
+                    'key'      => $attributes['id'],
+                    'location' => substr($attributes['id'], -4),
+                    'all'      => substr($attributes['id'], 0, -5)." NOTAMN\nQ) EISN/QMXLC/IV/BO /A /000/999/5325N00616W005\nA) EIDW B) 2402202300 C) 2402240600\nD) DAILY 2300-0600\nE) TWY K CLOSED\nCREATED: 16 Feb 2024 15:52:00 \nSOURCE: EUECYIYN",
+                    'Created'  => $this->faker->dateTimeBetween('-1 week', '+1 week')->format('c'),
+                ];
+            },
             'code'       => null,
             'type'       => null,
             'summary'    => null,
@@ -40,12 +46,12 @@ class NotamFactory extends Factory
         });
     }
 
-    public function processed(): Factory
+    public function tagged(): Factory
     {
         return $this->state(function (array $attributes) {
             return [
                 'status'  => NotamStatus::TAGGED,
-                'code'    => $this->faker->regexify('[A-H][1-9]'),
+                'code'    => $this->faker->regexify('[ACHLPRST][1-6]'),
                 'type'    => $this->faker->words(2, true),
                 'summary' => $this->faker->words(7, true),
             ];
