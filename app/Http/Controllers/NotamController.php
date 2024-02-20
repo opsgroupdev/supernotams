@@ -34,7 +34,7 @@ class NotamController extends Controller
 
         return $pdf ? Response::make($pdf, 200,
             [
-                'Content-type' => 'application/pdf',
+                'Content-type'        => 'application/pdf',
                 'Content-Disposition' => 'inline; filename=notampack.pdf',
             ])
             : response('Sorry link has expired');
