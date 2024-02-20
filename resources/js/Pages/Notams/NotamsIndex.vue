@@ -96,9 +96,9 @@ const toggleDetails = (notamId) => {
                             <div class="space-x-5 rounded-full flex justify-center items-center text-2xl font-mono">
                                 <img src="/images/just-notams-logo-210.png" alt="My Image" />
                                 <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
-                                    <h2 class="leading-relaxed">Submit your ATC flightplan!</h2>
+                                    <h2 class="leading-relaxed">Submit the ATC flightplan message</h2>
                                     <p class="text-sm text-gray-500 font-normal leading-relaxed">
-                                        Yeah, seriously. Just copy and paste it in here.
+                                       Seriously! Just copy and paste it in here.
                                     </p>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@ const toggleDetails = (notamId) => {
                                 <button :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
                                         type="submit"
                                         class="bg-cyan-700 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">
-                                    Click and Pray!
+                                    Let's Go!
                                 </button>
                             </div>
                         </div>
@@ -136,7 +136,12 @@ const toggleDetails = (notamId) => {
         </form>
 
         <Modal :show="result !== '' || progressMessage.length > 0" @close="closeModal" max-width="5xl">
-            <div v-if="fileKey !== ''" class="p-4 w-1/2 mx-auto bg-yellow-300 flex justify-center items-center m-3 rounded underline text-blue-800">
+          <div class="flex justify-end cursor-pointer" @click="closeModal">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-12 h-12 class=right-02">
+            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" />
+          </svg>
+          </div>
+          <div v-if="fileKey !== ''" class="p-4 w-1/2 mx-auto bg-yellow-300 flex justify-center items-center m-3 rounded underline text-blue-800">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 mr-3">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25" />
                 </svg>
