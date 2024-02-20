@@ -2,19 +2,16 @@
 
 namespace App\Jobs;
 
+use App\Actions\NotamFetcherAction;
 use App\Enum\NotamStatus;
 use App\Models\Notam;
 use Closure;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Http\Client\Response;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Http;
-use Log;
-use Storage;
 
 class NotamRequestJob implements ShouldQueue
 {
@@ -46,34 +43,12 @@ class NotamRequestJob implements ShouldQueue
 
     protected function notamsFromApi(): Collection
     {
-        $response = Http::get('https://api.anbdata.com/anb/states/notams/notams-realtime-list', [
-            'api_key'   => config('NotamsSource.icao_api_key'),
-            'locations' => $this->locations(),
-        ]);
-
-        if ($response->failed()) {
-            $this->reportError($response);
-
-            return collect();
-        }
-
-        $this->log($response);
-
-        return collect($response->json());
+        return NotamFetcherAction::fetch($this->locations());
     }
 
-    protected function locations(): string|iterable
+    protected function locations(): Collection
     {
-        return is_iterable($this->icaoIdents) ? collect($this->icaoIdents)->implode(',') : $this->icaoIdents;
-    }
-
-    protected function reportError(Response $response): void
-    {
-        //TODO - Where/who do we want to notify these errors to?
-        Log::error(
-            'Error retrieving Notams from server.',
-            [$response->status(), $response->reason(), $response->body()]
-        );
+        return is_iterable($this->icaoIdents) ? collect($this->icaoIdents) : str($this->icaoIdents)->explode(',');
     }
 
     protected function dispatchNotamTagJobs(): void
@@ -89,10 +64,5 @@ class NotamRequestJob implements ShouldQueue
     {
         return fn (Collection $notams) => Notam::whereIn('id', $notams->pluck('id'))
             ->update(['status' => NotamStatus::PROCESSING]);
-    }
-
-    protected function log(Response $response): void
-    {
-        Storage::disk('local')->put('responses/'.now()->format('Y-m-d_H_i_s').'.json', $response->body());
     }
 }
