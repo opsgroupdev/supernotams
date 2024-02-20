@@ -173,14 +173,14 @@ const toggleDetails = (notamId) => {
                                             @click="toggleDetails(notam.id)">
                                             {{ notam.id }}
                                         </td>
-                                        <td class="px-6 py-3" v-text="notam.TagCode"></td>
+                                        <td class="px-6 py-3" v-text="notam.code"></td>
                                         <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                            v-text="notam.TagName"></td>
-                                        <td class="px-6 py-3" v-text="notam.Explanation"></td>
+                                            v-text="notam.type"></td>
+                                        <td class="px-6 py-3" v-text="notam.summary"></td>
                                     </tr>
                                     <tr v-if="expandedNotam === notam.id" class="bg-gray-100 text-gray-600">
                                         <td colspan="4" class="px-6 py-4 font-mono whitespace-pre"
-                                            v-text="notam.all"></td>
+                                            v-text="notam.structure.all"></td>
                                     </tr>
                                 </template>
                                 </tbody>
@@ -197,7 +197,7 @@ const toggleDetails = (notamId) => {
                 <div class="max-h-96 pl-6 overflow-y-auto">
                     <ol class="list-outside list-disc space-y-2" ref="messageBox">
                         <li v-for="progress in progressMessage" class="p-2 rounded text-gray-700"
-                            :class="{ 'odd:bg-gray-200 even:bg-gray-50': progress.type === 'success', 'bg-red-300': progress.type !== 'success' }"
+                            :class="{ 'odd:bg-gray-100 even:bg-gray-50': progress.type === 'success', 'bg-red-300': progress.type !== 'success' }"
                             v-html="progress.message"></li>
                     </ol>
                 </div>
