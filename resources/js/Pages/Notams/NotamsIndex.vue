@@ -135,7 +135,7 @@ const toggleDetails = (notamId) => {
             </div>
         </form>
 
-        <Modal :show="result !== '' || progressMessage.length > 0" @close="closeModal" max-width="6xl">
+        <Modal :show="result !== '' || progressMessage.length > 0" @close="closeModal" max-width="4xl">
             <div v-if="fileKey !== ''" class="p-4 w-1/2 mx-auto bg-yellow-300 flex justify-center items-center m-3 rounded underline text-blue-800">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 mr-3">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25" />
@@ -156,7 +156,7 @@ const toggleDetails = (notamId) => {
                             <h2 class="p-3 text-xl capitalize text-gray-700 leading-10">
                                 {{ category }} <span class="uppercase pl-5">{{ airportId }}</span>
                             </h2>
-                            <table class="table-fixed w-full text-sm text-left text-gray-600 dark:text-gray-400 mb-20">
+                            <table class="table-auto w-full text-sm text-left text-gray-600 dark:text-gray-400 mb-20">
                                 <thead
                                     class="text-xs text-white uppercase bg-gray-600 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
