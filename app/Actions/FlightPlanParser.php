@@ -53,9 +53,9 @@ class FlightPlanParser
         $allowed = str(Airports::ALL)->upper()->explode(',');
         $requested = $flightplan->flatten()->filter()->unique();
 
-        if ($requested->diff($allowed)->count() > 0) {
-            throw new \Exception('So sorry. But for this demo, all airports in the flight plan MUST be in Ireland');
-        }
+        //        if ($requested->diff($allowed)->count() > 0) {
+        //            throw new \Exception('So sorry. But for this demo, all airports in the flight plan MUST be in Ireland');
+        //        }
 
         return $flightplan;
     }
