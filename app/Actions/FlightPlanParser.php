@@ -55,7 +55,7 @@ class FlightPlanParser
         $requested = $flightplan->flatten()->filter()->unique();
 
         if ($requested->diff($allowed)->count() > 0) {
-            throw new Exception('We are very sorry - but for this demo, we are only able to accept "large" airports in Ireland and the UK. Currently accepted airports are: '.str(Airports::ALL)->explode(',')->sort()->implode(','));
+            throw new Exception('We are very sorry - but for this demo, we are only able to accept "large" airports in Ireland and the UK. '.$requested->diff($allowed)->implode(',').'is not allowed. Currently accepted airports are: '.str(Airports::ALL)->explode(',')->sort()->implode(','));
         }
 
         return $flightplan;
