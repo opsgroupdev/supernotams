@@ -1,5 +1,13 @@
 @php
-    /** @var \Illuminate\Support\Collection<string, <array>> $filteredNotams */
+    use \Illuminate\Support\Collection;
+        /** @var Collection<string, \Illuminate\Support\Collection{
+         *     departureAirport: \Illuminate\Support\Collection<string>,
+         *     destinationAirport: \Illuminate\Support\Collection<string>,
+         *     destinationAlternates: \Illuminate\Support\Collection<string>,
+         *     enrouteAlternates: \Illuminate\Support\Collection<string>,
+         *     takeoffAlternate: \Illuminate\Support\Collection<string>,
+         * }> $filteredNotams
+         */
 @endphp
         <!DOCTYPE html>
 <html lang="en">
@@ -29,10 +37,10 @@
                 <tbody class="bg-transparent">
                 @foreach($notams as $notam)
                     <tr>
-                        <td class="py-2 px-4">{{$notam['TagCode']}}</td>
-                        <td class="py-2 px-4 font-bold">{{$notam['TagName']}}</td>
+                        <td class="py-2 px-4">{{$notam['code']}}</td>
+                        <td class="py-2 px-4 font-bold">{{$notam['type']}}</td>
                         <td class="py-2 px-4 italic">{{$notam['id']}}</td>
-                        <td class="py-2 px-4 whitespace-break-spaces">{{$notam['Explanation']}}</td>
+                        <td class="py-2 px-4 whitespace-break-spaces">{{$notam['summary']}}</td>
                     </tr>
                 @endforeach
                 <tr class="h-10">
@@ -67,13 +75,13 @@
                         <td>
                             <table class="w-full">
                                 <tr>
-                                    <td class="py-2 px-4">{{$notam['TagCode']}}</td>
-                                    <td class="py-2 px-4 font-bold">{{$notam['TagName']}}</td>
+                                    <td class="py-2 px-4">{{$notam['code']}}</td>
+                                    <td class="py-2 px-4 font-bold">{{$notam['type']}}</td>
                                     <td class="py-2 px-4 italic">{{$notam['id']}}</td>
-                                    <td class="py-2 px-4 whitespace-break-spaces text-lg">{{$notam['Explanation']}}</td>
+                                    <td class="py-2 px-4 whitespace-break-spaces text-lg">{{$notam['summary']}}</td>
                                 </tr>
                                 <tr class="border-b-2 border-b-gray-600">
-                                    <td colspan="4" class="whitespace-pre font-mono p-2 text-sm">{{$notam['all']}}</td>
+                                    <td colspan="4" class="whitespace-pre font-mono p-2 text-sm">{{$notam['structure']['all']}}</td>
                                 </tr>
                             </table>
                         </td>
