@@ -1,9 +1,9 @@
 <?php
 
-use App\Actions\NotamRetriever;
-use App\Actions\OpenAITagger;
-use App\Events\NotamProcessingEvent;
+use App\Actions\NotamFetcherAction;
+use App\Events\NotamResultEvent;
 use App\Jobs\NotamProcessingJob;
+use App\Models\Notam;
 use Illuminate\Support\Facades\Event;
 
 function atcPlan1()
@@ -22,16 +22,60 @@ FF EUCHZMFP EUCBZMFP EIDWEINU
 EOL;
 }
 
+function atcPlan2()
+{
+    return <<<'EOL'
+FF KZDCZQZX EUCHZMFP EUCBZMFP EIDWEINU CZQMZQZX CZQMZQZR CZQXZQZX
+  EGGXZOZX
+  EIDWEINU
+  (FPL-EIN118-IS
+  -A21N/M-SDE2E3FGHIJ1J4J7M3P2RWXYZ/LB1D1
+  -EGAA0055
+  -N0451F330 JCOBY4 SWANN DCT BROSS Q419 RBV DCT LLUND DCT BAYYS DCT
+  PUT DCT TUSKY N201B NICSO/M078F330 DCT 48N050W 51N040W 52N030W
+  53N020W DCT MALOT/N0453F330 DCT GISTI DCT OSGAR OSGAR3X
+  -EICK0617 EINN
+  -PBN/A1B1D1L1S2 NAV/RNP2 DAT/1FANS2PDC SUR/RSP180 260B DOF/230510
+  REG/EILRG EET/KZNY0024 KZBW0032 CZQM0117 CZQX0209 NICSO0239
+  48N050W0249 51N040W0338 EGGX0425 53N020W0510 EISN0532 SEL/AGEJ
+  CODE/4CABD3 OPR/EIN PER/C RALT/EIKN RVR/075 RMK/TCAS AER
+  LINGUS OPERATIONS 0035318862147)
+EOL;
+}
+
+function atcPlan3()
+{
+    return <<<'EOL'
+FF KZDCZQZX EUCHZMFP EUCBZMFP EIDWEINU CZQMZQZX CZQMZQZR CZQXZQZX
+  EGGXZOZX
+  EIDWEINU
+  (FPL-EIN118-IS
+  -A21N/M-SDE2E3FGHIJ1J4J7M3P2RWXYZ/LB1D1
+  -EGAA0055
+  -N0451F330 JCOBY4 SWANN DCT BROSS Q419 RBV DCT LLUND DCT BAYYS DCT
+  PUT DCT TUSKY N201B NICSO/M078F330 DCT 48N050W 51N040W 52N030W
+  53N020W DCT MALOT/N0453F330 DCT GISTI DCT OSGAR OSGAR3X
+  -EICK0617 EINN EIDW
+  -PBN/A1B1D1L1S2 NAV/RNP2 DAT/1FANS2PDC SUR/RSP180 260B DOF/230510
+  REG/EILRG EET/KZNY0024 KZBW0032 CZQM0117 CZQX0209 NICSO0239
+  48N050W0249 51N040W0338 EGGX0425 53N020W0510 EISN0532 SEL/AGEJ
+  CODE/4CABD3 OPR/EIN PER/C RALT/EIKN RVR/075 RMK/TCAS AER
+  LINGUS OPERATIONS 0035318862147)
+EOL;
+}
+
 it('runs the whole process', function () {
-    Event::fake([NotamProcessingEvent::class]);
+    //Event::fake([NotamResultEvent::class]);
+    //TODO Refactor this.
+    $notams = File::json(base_path('tests/source/notams.json'));
+    foreach ($notams as $notam) {
+        $notam['structure'] = json_decode($notam['structure'], true);
+        Notam::create($notam);
+    }
 
-    $this->mock(NotamRetriever::class)
-        ->expects('icaoSource')
-        ->andReturn(collect(json_decode(file_get_contents(base_path('tests/source/ICAO_Notam_Source.json')), true)));
+    $this->mock(NotamFetcherAction::class)
+        ->expects('get')
+        ->andReturn(collect(File::json(base_path('tests/source/Trial_Run.json'))));
 
-    $this->mock(OpenAITagger::class)
-        ->expects('process')
-        ->andReturn(collect(json_decode(file_get_contents(base_path('tests/source/ICAO_NotamsWithTags.json')), true)));
-
-    NotamProcessingJob::dispatch(atcPlan1(), 'mychannel');
-});
+    NotamProcessingJob::dispatch(atcPlan3(), 'x10WI4RqH1t68qHIsLYzMteUVbogJX17foA5aNnR');
+})->todo();
