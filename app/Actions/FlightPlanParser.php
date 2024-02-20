@@ -3,6 +3,7 @@
 namespace App\Actions;
 
 use App\Enum\Airports;
+use Exception;
 use Illuminate\Support\Collection;
 use Spatie\Regex\Regex;
 
@@ -22,7 +23,7 @@ class FlightPlanParser
      *     takeoffAlternate: Collection<string>,
      * }
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function parse($flightPlanText): Collection
     {
@@ -53,9 +54,9 @@ class FlightPlanParser
         $allowed = str(Airports::ALL)->upper()->explode(',');
         $requested = $flightplan->flatten()->filter()->unique();
 
-        //        if ($requested->diff($allowed)->count() > 0) {
-        //            throw new \Exception('So sorry. But for this demo, all airports in the flight plan MUST be in Ireland');
-        //        }
+        if ($requested->diff($allowed)->count() > 0) {
+            throw new Exception('We are very sorry - but for this demo, we are only able to accept "large" airports in Ireland and the UK. Currently accepted airports are: '.str(Airports::ALL)->explode(',')->sort()->implode(','));
+        }
 
         return $flightplan;
     }

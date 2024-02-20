@@ -14,19 +14,24 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        //For demo purposes we are only getting notams for irish airports.
+        //For demo purposes we are only getting notams for irish and uk airports.
         //In real life we would connect to an api that would provide all
         //new notams for all world airports.
-        $batch1 = Airports::BATCH1;
-        $batch2 = Airports::BATCH2;
-
         $schedule
-            ->job(new NotamRequestJob($batch1))
+            ->job(new NotamRequestJob(Airports::BATCH1))
             ->hourlyAt(['07', '37']);
 
         $schedule
-            ->job(new NotamRequestJob($batch2))
-            ->hourlyAt(['22', '52']);
+            ->job(new NotamRequestJob(Airports::BATCH2))
+            ->hourlyAt(['14', '44']);
+
+        $schedule
+            ->job(new NotamRequestJob(Airports::BATCH3))
+            ->hourlyAt(['21', '51']);
+
+        $schedule
+            ->job(new NotamRequestJob(Airports::BATCH4))
+            ->hourlyAt(['28', '58']);
     }
 
     /**
