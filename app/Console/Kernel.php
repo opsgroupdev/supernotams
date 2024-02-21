@@ -19,19 +19,19 @@ class Kernel extends ConsoleKernel
         //new notams for all world airports.
         $schedule
             ->job(new NotamRequestJob(Airports::BATCH1))
-            ->hourlyAt(['07', '37']);
+            ->hourlyAt(['07']);
 
         $schedule
             ->job(new NotamRequestJob(Airports::BATCH2))
-            ->hourlyAt(['14', '44']);
+            ->hourlyAt(['14']);
 
         $schedule
             ->job(new NotamRequestJob(Airports::BATCH3))
-            ->hourlyAt(['21', '51']);
+            ->hourlyAt(['21']);
 
         $schedule
             ->job(new NotamRequestJob(Airports::BATCH4))
-            ->hourlyAt(['28', '58']);
+            ->hourlyAt(['28']);
     }
 
     /**
