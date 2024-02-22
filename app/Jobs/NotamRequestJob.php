@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Actions\NotamFetcherAction;
+use App\Enum\LLM;
 use App\Enum\NotamStatus;
 use App\Models\Notam;
 use Closure;
@@ -17,7 +18,7 @@ class NotamRequestJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function __construct(protected string|iterable $icaoIdents)
+    public function __construct(protected string|iterable $icaoIdents, protected LLM $llm = LLM::GPT_3_5_TURBO)
     {
     }
 
@@ -57,7 +58,7 @@ class NotamRequestJob implements ShouldQueue
             ->where('status', NotamStatus::UNTAGGED)
             ->get()
             ->tap($this->markAsProcessing())
-            ->each(fn (Notam $notam) => NotamTagJob::dispatch($notam));
+            ->each(fn (Notam $notam) => NotamTagJob::dispatch($notam, $this->llm));
     }
 
     protected function markAsProcessing(): Closure

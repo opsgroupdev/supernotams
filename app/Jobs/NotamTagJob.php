@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enum\LLM;
 use App\Enum\NotamStatus;
 use App\Models\Notam;
 use App\OpenAI\Prompt;
@@ -26,7 +27,7 @@ class NotamTagJob implements ShouldQueue
 
     protected int $startTime;
 
-    public function __construct(protected readonly Notam $notam)
+    public function __construct(protected readonly Notam $notam, protected readonly LLM $llm)
     {
         $this->onQueue('tagging');
     }
@@ -59,7 +60,7 @@ class NotamTagJob implements ShouldQueue
     {
         return $openAi::chat()
             ->create([
-                'model'           => 'gpt-3.5-turbo', //gpt-4, gpt-4-turbo-preview, gpt-3.5-turbo
+                'model'           => $this->llm->label(), //gpt-4, gpt-4-turbo-preview, gpt-3.5-turbo
                 'response_format' => ['type' => 'json_object'],
                 'messages'        => array_merge(
                     Prompt::get(),
@@ -82,6 +83,7 @@ class NotamTagJob implements ShouldQueue
                 'type'    => $result['type'],
                 'summary' => $result['summary'],
                 'status'  => NotamStatus::TAGGED,
+                'llm'     => $this->llm->value,
             ]);
 
         $this->logData($response);

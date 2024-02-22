@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\LLM;
 use App\Enum\NotamStatus;
 use App\Jobs\NotamTagJob;
 use App\Models\Notam;
@@ -17,7 +18,7 @@ it('sends a notam to the live server to get decoded', function () {
         'status'    => NotamStatus::UNTAGGED,
     ]);
 
-    NotamTagJob::dispatchSync($notam);
+    NotamTagJob::dispatchSync($notam, LLM::GPT_3_5_TURBO);
     $notam->refresh();
 
     $this->assertModelExists($notam);
@@ -46,7 +47,7 @@ it('uses openai fake facade to prevent hitting the live server', function () {
     $notam = Notam::factory()->processing()->create();
     expect($notam->status)->toBe(NotamStatus::PROCESSING);
 
-    NotamTagJob::dispatchSync($notam);
+    NotamTagJob::dispatchSync($notam, LLM::GPT_3_5_TURBO);
     $notam->refresh();
 
     $this->assertModelExists($notam);
@@ -54,6 +55,7 @@ it('uses openai fake facade to prevent hitting the live server', function () {
     expect($notam->code)->toBe('R1');
     expect($notam->type)->toBe('Runway closed');
     expect($notam->summary)->toBe('Runway 16/34 closed for takeoff and landing');
+    expect($notam->llm)->toBe(LLM::GPT_3_5_TURBO);
 });
 
 it('it marks a notam status as ERROR if openai is unable to return valid data', function () {
@@ -78,7 +80,7 @@ it('it marks a notam status as ERROR if openai is unable to return valid data', 
     $notam = Notam::factory()->processing()->create();
     expect($notam->status)->toBe(NotamStatus::PROCESSING);
 
-    $job = new NotamTagJob($notam);
+    $job = new NotamTagJob($notam, LLM::GPT_3_5_TURBO);
     $job->tries = 1; //When using the sync driver we can never have more than 1 try so we have to override the job class
 
     dispatch_sync($job);
@@ -109,7 +111,7 @@ it('it marks a notam status as ERROR if openai keeps returning a finish reason o
     $notam = Notam::factory()->processing()->create();
     expect($notam->status)->toBe(NotamStatus::PROCESSING);
 
-    $job = new NotamTagJob($notam);
+    $job = new NotamTagJob($notam, LLM::GPT_3_5_TURBO);
     $job->tries = 1; //When using the sync driver we can never have more than 1 try so we have to override the job class
 
     dispatch_sync($job);
@@ -131,7 +133,7 @@ it('it marks a notam status as UNPROCESSED if we are unable to connect to openai
     $notam = Notam::factory()->processing()->create();
     expect($notam->status)->toBe(NotamStatus::PROCESSING);
 
-    $job = new NotamTagJob($notam);
+    $job = new NotamTagJob($notam, LLM::GPT_3_5_TURBO);
     $job->tries = 1; //When using the sync driver we can never have more than 1 try so we have to override the job class
 
     dispatch_sync($job);
