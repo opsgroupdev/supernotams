@@ -50,7 +50,7 @@ class NotamTagJob implements ShouldQueue
             $this->retryImmediately($errorException);
         }
 
-        //  $this->simpleRateLimit();
+        $this->simpleRateLimit();
     }
 
     /**
