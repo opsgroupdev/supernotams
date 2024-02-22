@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('notams', function (Blueprint $table) {
-            $table->string('llm')->after('status')->nullable();
+            $table->tinyInteger('llm')->after('status')->nullable();
         });
     }
 };
