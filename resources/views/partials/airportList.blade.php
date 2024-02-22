@@ -15,10 +15,10 @@ So this is what we're working with:<br />
         <td class='p-2 text-gray-800'>Dest Alts</td>
         <td class='p-2 text-gray-600'>{{$airports['destinationAlternates']->implode(',')}}</td>
     </tr>
-{{--    <tr class='border'>--}}
-{{--        <td class='p-2 text-gray-800'>Firs</td>--}}
-{{--        <td class='p-2 text-gray-600'>{{implode(',', $airports['firs'])}}</td>--}}
-{{--    </tr>--}}
+    <tr class='border'>
+        <td class='p-2 text-gray-800'>Firs</td>
+        <td class='p-2 text-gray-600'>{{$airports['firs']->implode(','}}</td>
+    </tr>
     <tr class='border'>
         <td class='p-2 text-gray-800'>En-route Alts</td>
         <td class='p-2 text-gray-600'>{{$airports['enrouteAlternates']->implode(',')}}</td>
