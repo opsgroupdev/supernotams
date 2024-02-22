@@ -46,16 +46,16 @@ class FlightPlanParser
         $flightplan['departureAirport'] = collect([Regex::match('/[A-Z]{4}/i', $fields[2])->resultOr('')])->filter();
         $flightplan['destinationAirport'] = collect([array_shift($destMatches[0])])->filter();
         $flightplan['destinationAlternates'] = $destMatches[0] ? collect($destMatches[0]) : collect();
-        //        $flightplan['firs'] = array_values(array_unique($firMatches[1]));
+        $flightplan['firs'] = collect($firMatches[1])->unique()->values();
         $flightplan['enrouteAlternates'] = $enrAltMatches[0] ? collect($enrAltMatches[0]) : collect();
         $flightplan['takeoffAlternate'] = collect([Regex::match('/[A-Z]{4}/i', $takeOffAlt)->resultOr('')])->filter();
 
-        //TODO This is for the demo only. Check to make sure only airports on the island of ireland are used.
+        //TODO This is for the demo only. Check to make sure only airports in the UK, Ireland, Australia and New Zealand.
         $allowed = str(Airports::ALL)->upper()->explode(',');
         $requested = $flightplan->flatten()->filter()->unique();
 
         if ($requested->diff($allowed)->count() > 0) {
-            throw new Exception('We are very sorry - but for this demo, we are only able to accept "large" airports in Ireland and the UK. '.$requested->diff($allowed)->implode(',').'is not allowed. Currently accepted airports are: '.str(Airports::ALL)->explode(',')->sort()->implode(','));
+            throw new Exception('Sorry, for this demo, you can strictly only submit ATC flight plan messages that contain major (i.e. the main/international) airports in Ireland, the United Kingdom, Australia, or New Zealand. '.$requested->diff($allowed)->implode(',').' is not allowed. Currently accepted airports are: '.str(Airports::ALL)->explode(',')->sort()->implode(','));
         }
 
         return $flightplan;

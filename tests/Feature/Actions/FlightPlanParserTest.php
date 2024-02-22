@@ -78,8 +78,7 @@ FF KZDCZQZX EUCHZMFP EUCBZMFP EIDWEINU CZQMZQZX CZQMZQZR CZQXZQZX
   53N020W DCT MALOT/N0453F330 DCT GISTI DCT OSGAR OSGAR3X
   -EICK0617 EINN
   -PBN/A1B1D1L1S2 NAV/RNP2 DAT/1FANS2PDC SUR/RSP180 260B DOF/230510
-  REG/EILRG EET/KZNY0024 KZBW0032 CZQM0117 CZQX0209 NICSO0239
-  48N050W0249 51N040W0338 EGGX0425 53N020W0510 EISN0532 SEL/AGEJ
+  REG/EILRG EET/EGGX0425 53N020W0510 EISN0532 EGTT0615 SEL/AGEJ
   CODE/4CABD3 OPR/EIN PER/C RALT/EIKN RVR/075 RMK/TCAS AER
   LINGUS OPERATIONS 0035318862147)
 EOL;
@@ -129,6 +128,7 @@ it('parses an ATC flightplan 4', function () {
     expect($result['destinationAlternates'])->toMatchArray(['EINN']);
     expect($result['enrouteAlternates'])->toMatchArray([]);
     expect($result['takeoffAlternate'])->toMatchArray([]);
+    expect($result['firs'])->toMatchArray(['EGGX', 'EISN', 'EGTT']);
 });
 
 it('can be instantiated as a normal class', function () {
