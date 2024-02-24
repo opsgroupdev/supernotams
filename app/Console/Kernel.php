@@ -47,14 +47,26 @@ class Kernel extends ConsoleKernel
 
         $schedule
             ->job(new NotamRequestJob(Airports::BATCH_FIRS_1))
-            ->hourlyAt(['49']);
+            ->hourlyAt(['45']);
 
         $schedule
             ->job(new NotamRequestJob(Airports::BATCH_FIRS_2))
-            ->hourlyAt(['55']);
+            ->hourlyAt(['48']);
 
         $schedule
             ->job(new NotamRequestJob(Airports::BATCH_FIRS_3))
+            ->hourlyAt(['51']);
+
+        $schedule
+            ->job(new NotamRequestJob(Airports::BATCH_FIRS_4))
+            ->hourlyAt(['54']);
+
+        $schedule
+            ->job(new NotamRequestJob(Airports::BATCH_FIRS_5))
+            ->hourlyAt(['57']);
+
+        $schedule
+            ->job(new NotamRequestJob(Airports::BATCH_FIRS_6))
             ->hourlyAt(['01']);
     }
 

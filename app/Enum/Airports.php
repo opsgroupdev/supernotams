@@ -19,11 +19,17 @@ class Airports
 
     const BATCH7 = 'NZAA,NZCH,NZWN,NZQN,NZDN,NZNS';
 
-    const BATCH_FIRS_1 = 'EISN,EGGX,EGTT';
+    const BATCH_FIRS_1 = 'EISN';
 
-    const BATCH_FIRS_2 = 'YBBB,YMMM';
+    const BATCH_FIRS_2 = 'EGGX';
 
-    const BATCH_FIRS_3 = 'NZZO,NZZC';
+    const BATCH_FIRS_3 = 'EGTT';
 
-    const ALL = self::BATCH1.','.self::BATCH2.','.self::BATCH3.','.self::BATCH4.','.self::BATCH5.','.self::BATCH6.','.self::BATCH7.','.self::BATCH_FIRS_1.','.self::BATCH_FIRS_2.','.self::BATCH_FIRS_3;
+    const BATCH_FIRS_4 = 'YBBB';
+
+    const BATCH_FIRS_5 = 'YMMM';
+
+    const BATCH_FIRS_6 = 'NZZO,NZZC';
+
+    const ALL = self::BATCH1.','.self::BATCH2.','.self::BATCH3.','.self::BATCH4.','.self::BATCH5.','.self::BATCH6.','.self::BATCH7.','.self::BATCH_FIRS_1.','.self::BATCH_FIRS_2.','.self::BATCH_FIRS_3.','.self::BATCH_FIRS_4.','.self::BATCH_FIRS_5.','.self::BATCH_FIRS_6;
 }
