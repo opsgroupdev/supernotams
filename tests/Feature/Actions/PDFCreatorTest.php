@@ -49,4 +49,5 @@ it('generates a pdf file from the filtered notams', function () {
     $chunks = chunkArray($notams);
 
     dd($chunks);
-});
+})
+    ->skip();

@@ -1,6 +1,7 @@
 <?php
 
 use App\Actions\FlightPlanParser;
+use App\DTO\AtcFlightPlan;
 
 function plan1(): string
 {
@@ -79,7 +80,7 @@ FF KZDCZQZX EUCHZMFP EUCBZMFP EIDWEINU CZQMZQZX CZQMZQZR CZQXZQZX
   -EICK0617 EINN
   -PBN/A1B1D1L1S2 NAV/RNP2 DAT/1FANS2PDC SUR/RSP180 260B DOF/230510
   REG/EILRG EET/EGGX0425 53N020W0510 EISN0532 EGTT0615 SEL/AGEJ
-  CODE/4CABD3 OPR/EIN PER/C RALT/EIKN RVR/075 RMK/TCAS AER
+  CODE/4CABD3 OPR/EIN PER/C RALT/EIKN EGCC RVR/075 RMK/TCAS AER
   LINGUS OPERATIONS 0035318862147)
 EOL;
 }
@@ -123,21 +124,28 @@ it('parses an ATC flightplan 3', function () {
 it('parses an ATC flightplan 4', function () {
     $result = FlightPlanParser::process(plan4());
 
-    expect($result['departureAirport'])->toMatchArray(['EGAA']);
-    expect($result['destinationAirport'])->toMatchArray(['EICK']);
-    expect($result['destinationAlternates'])->toMatchArray(['EINN']);
-    expect($result['enrouteAlternates'])->toMatchArray([]);
-    expect($result['takeoffAlternate'])->toMatchArray([]);
-    expect($result['firs'])->toMatchArray(['EGGX', 'EISN', 'EGTT']);
+    expect($result)->toBeInstanceOf(AtcFlightPlan::class);
+    expect($result->departureAirport)->toMatchArray(['EGAA']);
+    expect($result->destinationAirport)->toMatchArray(['EICK']);
+    expect($result->destinationAlternate)->toMatchArray(['EINN']);
+    expect($result->enrouteAlternates)->toMatchArray(['EIKN', 'EGCC']);
+    expect($result->takeoffAlternate)->toMatchArray([]);
+    expect($result->firs)->toMatchArray(['EGGX', 'EISN', 'EGTT']);
 });
 
 it('can be instantiated as a normal class', function () {
     $parser = new FlightPlanParser();
 
     $result = $parser->parse(plan4());
-    expect($result['departureAirport'])->toMatchArray(['EGAA']);
-    expect($result['destinationAirport'])->toMatchArray(['EICK']);
-    expect($result['destinationAlternates'])->toMatchArray(['EINN']);
-    expect($result['enrouteAlternates'])->toMatchArray([]);
-    expect($result['takeoffAlternate'])->toMatchArray([]);
+    expect($result)->toBeInstanceOf(AtcFlightPlan::class);
+    expect($result->departureAirport)->toMatchArray(['EGAA']);
+    expect($result->destinationAirport)->toMatchArray(['EICK']);
+    expect($result->destinationAlternate)->toMatchArray(['EINN']);
+    expect($result->enrouteAlternates)->toMatchArray(['EIKN', 'EGCC']);
+    expect($result->takeoffAlternate)->toMatchArray([]);
+    expect($result->firs)->toMatchArray(['EGGX', 'EISN', 'EGTT']);
 });
+
+it('throws an exception if the flight plan is in an invalid format', function () {
+    $result = FlightPlanParser::process('Nonsense text');
+})->throws(Exception::class, 'Sorry unable to extract all the required details from the flight plan supplied. Please try again.');
