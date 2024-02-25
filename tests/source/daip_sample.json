@@ -1,0 +1,525 @@
+{
+  "uuid": "eff4aa422e9d4f718e892eec8f075295",
+  "count": 34,
+  "hide": 0,
+  "date": "Sat, 24 Feb 2024 11:51:00 GMT",
+  "headerText": null,
+  "type": "LOCATION",
+  "formatType": "REPORT",
+  "sort": null,
+  "error": null,
+  "group": [
+    {
+      "id": "5dae78b187624cc6b14ea9ff4ef2a5ce",
+      "name": "EICK",
+      "text": null,
+      "expand": 0,
+      "show": 0,
+      "notams": [
+        {
+          "code": "EICK",
+          "name": "EICK CORK",
+          "title": "",
+          "showGraf": 0,
+          "list": [
+            {
+              "id": "A0236/24",
+              "xid": null,
+              "idshow": "A0236/24",
+              "text": "VOR RWY 16 INSTRUMENT APPROACH PROCEDURE NOT AVAILABLE\nREF AIP EICK AD 2.24-20.1. 26 JAN 09:41 2024 UNTIL 25 APR 23:59 2024.\nCREATED: 26 JAN 09:41 2024",
+              "rawtext": "\nA0236/24 NOTAMR A3029/23\nQ) EISN/QPIAU/I /NBO/A /000/999/5150N00829W005\nA) EICK B) 2401260941 C) 2404252359 EST\nE) VOR RWY 16 INSTRUMENT APPROACH PROCEDURE NOT AVAILABLE\nREF AIP EICK AD 2.24-20.1\n\nCREATED: 26 JAN 2024 09:41\nSOURCE: EUECYIYN",
+              "key": "EICK_I_EINNYNYX_A0236_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "B1137/15",
+              "xid": null,
+              "idshow": "B1137/15",
+              "text": "HOLDING PROCEDURE CHANGED. RATE OF DESCENT IN HOLDING PATTERNS \nAMENDED TO: A STANDARD RATE OF DESCENT OF 1000FT PER MIN IN HOLDING \nPATTERNS WILL BE USED UNLESS OTHERWISE INSTRUCTED BY ATC. PILOTS \nMUST ADVISE ATC IF UNABLE TO COMPLY WITH THE STANDARD RATE OF \nDESCENT. \nREF AIP EICK AD 2.22 SECTION 6. 02 OCT 17:42 2015 UNTIL PERM.UNTIL null.\nCREATED: 01 MAY 11:24 2017",
+              "rawtext": "\nB1137/15 NOTAMN\nQ) EISN/QPHCH/IV/BO /AE/000/999/5150N00829W025\nA) EICK B) 1510021742 C) PERM\nE) HOLDING PROCEDURE CHANGED. RATE OF DESCENT IN HOLDING PATTERNS \nAMENDED TO: A STANDARD RATE OF DESCENT OF 1000FT PER MIN IN HOLDING \nPATTERNS WILL BE USED UNLESS OTHERWISE INSTRUCTED BY ATC. PILOTS \nMUST ADVISE ATC IF UNABLE TO COMPLY WITH THE STANDARD RATE OF \nDESCENT. \nREF AIP EICK AD 2.22 SECTION 6\n\nCREATED: 01 MAY 2017 11:24\nSOURCE: EUECYIYN",
+              "key": "EICK_I_EINNYNYX_B1137_15",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A3499/23",
+              "xid": null,
+              "idshow": "A3499/23",
+              "text": "RUNWAY 16/34 180 DEGREE TURNS BY CODE C AND D AIRCRAFTS ARE \nPERMITTED ON CONDITION THAT THE AIRCRAFTS IS TURNED AT A LOW \nCONSTANT SPEED (5 TO 8 KTS) WITH MINIMAL THRUST TO AVOID THE INBOARD \nMAIN LANDING GEAR WHEEL BECOMING STATIONARY (SPOT TURNS MUST BE \nAVOIDED. 07 DEC 22:26 2023 UNTIL 01 MAR 18:00 2024. CREATED: 07 DEC 22:27\n2023",
+              "rawtext": "\nA3499/23 NOTAMR A2481/23\nQ) EISN/QMRXX/I /NBO/A /000/999/5150N00829W005\nA) EICK B) 2312072226 C) 2403011800 EST\nE) RUNWAY 16/34 180 DEGREE TURNS BY CODE C AND D AIRCRAFTS ARE \nPERMITTED ON CONDITION THAT THE AIRCRAFTS IS TURNED AT A LOW \nCONSTANT SPEED (5 TO 8 KTS) WITH MINIMAL THRUST TO AVOID THE INBOARD \nMAIN LANDING GEAR WHEEL BECOMING STATIONARY (SPOT TURNS MUST BE \nAVOIDED\n\nCREATED: 07 DEC 2023 22:27\nSOURCE: EUECYIYN",
+              "key": "EICK_I_EINNYNYX_A3499_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0384/24",
+              "xid": null,
+              "idshow": "A0384/24",
+              "text": "TRIGGER NOTAM IRELAND AIRAC AMENDMENT NR 002,\nEFFECTIVE DATE 21 MAR 2024.\nINCLUDED IN THIS AMENDMENT IS THE REVISED EICK\nAD 2.2  AERODROME GEOGRAPHICAL AND ADMINISTRATIVE DATA,\nAD 2.4  HANDLING SERVICES AND FACILITIES,\nAD 2.5  PASSENGER FACILITIES,\nAD 2.6  RESCUE AND FIRE FIGHTING SERVICES,\nAD 2.10 AERODROME OBSTACLES,\nAD 2.12 RUNWAY PHYSICAL CHARACTERISTICS,\nAD 2.13 DECLARED DISTANCES, \nAD 2.14 APPROACH AND RUNWAY LIGHTING,\nAD 2.18 ATS COMMUNICATIONS FACILITIES, \nAD 2.20 LOCAL TRAFFIC REGULATIONS. 21 MAR 00:00 2024 UNTIL 04 APR 23:59\n2024. CREATED: 12 FEB 12:30 2024",
+              "rawtext": "\nA0384/24 NOTAMN\nQ) EISN/QFATT/IV/BO /A /000/999/5150N00829W005\nA) EICK B) 2403210000 C) 2404042359\nE) TRIGGER NOTAM IRELAND AIRAC AMENDMENT NR 002,\nEFFECTIVE DATE 21 MAR 2024.\nINCLUDED IN THIS AMENDMENT IS THE REVISED EICK\nAD 2.2  AERODROME GEOGRAPHICAL AND ADMINISTRATIVE DATA,\nAD 2.4  HANDLING SERVICES AND FACILITIES,\nAD 2.5  PASSENGER FACILITIES,\nAD 2.6  RESCUE AND FIRE FIGHTING SERVICES,\nAD 2.10 AERODROME OBSTACLES,\nAD 2.12 RUNWAY PHYSICAL CHARACTERISTICS,\nAD 2.13 DECLARED DISTANCES, \nAD 2.14 APPROACH AND RUNWAY LIGHTING,\nAD 2.18 ATS COMMUNICATIONS FACILITIES, \nAD 2.20 LOCAL TRAFFIC REGULATIONS\n\nCREATED: 12 FEB 2024 12:30\nSOURCE: EUECYIYN",
+              "key": "EICK_I_EINNYNYX_A0384_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A3390/23",
+              "xid": null,
+              "idshow": "A3390/23",
+              "text": "ILS 16 REPLACEMENT\nREPLACEMENT OF INSTRUMENT LANDING SYSTEM (ILS CAT 2)\nSERVING RUNWAY 16\nWORK WILL BE CARRIED OUT ON A PHASED BASIS: PHASE 2:\nA NEW LOCALIZER RWY 16 WAS INSTALLED BEHIND THE EXISTING \nLOCALIZER 16. A NEW GLIDE PATH 16 MAST WAS INSTALLED BESIDE THE \nEXISTING GLIDE PATH 16 MAST. LOCALIZER, GLIDE PATH AND LANDING DME \nFOR ILS 16 WERE INSTALLED AND TESTING IS ONGOING. THE EXISTING ILS \n16 REMAINS IN SERVICE. 28 NOV 08:11 2023 UNTIL 27 FEB 08:30 2024. CREATED:\n28 NOV 08:11 2023",
+              "rawtext": "\nA3390/23 NOTAMR A2337/23\nQ) EISN/QITXX/I /NBO/A /000/999/5150N00829W005\nA) EICK B) 2311280811 C) 2402270830 EST\nE) ILS 16 REPLACEMENT\nREPLACEMENT OF INSTRUMENT LANDING SYSTEM (ILS CAT 2)\nSERVING RUNWAY 16\nWORK WILL BE CARRIED OUT ON A PHASED BASIS: PHASE 2:\nA NEW LOCALIZER RWY 16 WAS INSTALLED BEHIND THE EXISTING \nLOCALIZER 16. A NEW GLIDE PATH 16 MAST WAS INSTALLED BESIDE THE \nEXISTING GLIDE PATH 16 MAST. LOCALIZER, GLIDE PATH AND LANDING DME \nFOR ILS 16 WERE INSTALLED AND TESTING IS ONGOING. THE EXISTING ILS \n16 REMAINS IN SERVICE\n\nCREATED: 28 NOV 2023 08:11\nSOURCE: EUECYIYN",
+              "key": "EICK_I_EINNYNYX_A3390_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "B1675/23",
+              "xid": null,
+              "idshow": "B1675/23",
+              "text": "RWY EDGE LIGHTS RWY 07/25 UNSERVICABLE. 15 DEC 09:25 2023 UNTIL 08 MAR\n18:00 2024. CREATED: 15 DEC 09:31 2023",
+              "rawtext": "\nB1675/23 NOTAMR B1346/23\nQ) EISN/QLEAS/I /BO /A /000/999/5150N00829W005\nA) EICK B) 2312150925 C) 2403081800 EST\nE) RWY EDGE LIGHTS RWY 07/25 UNSERVICABLE.\n\nCREATED: 15 DEC 2023 09:31\nSOURCE: EUECYIYN",
+              "key": "EICK_I_EINNYNYX_B1675_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a8ccac151b834071b44cdc779ff028a2",
+      "name": "EIDW",
+      "text": null,
+      "expand": 0,
+      "show": 0,
+      "notams": [
+        {
+          "code": "EIDW",
+          "name": "EIDW DUBLIN",
+          "title": "",
+          "showGraf": 0,
+          "list": [
+            {
+              "id": "A3531/23",
+              "xid": null,
+              "idshow": "A3531/23",
+              "text": "TAXIWAY Z CLOSED\nREF AIP SUPPLEMENT 027/2022. 11 DEC 09:46 2023 UNTIL 11 MAR 23:00 2024.\nCREATED: 11 DEC 09:47 2023",
+              "rawtext": "\nA3531/23 NOTAMR A2797/23\nQ) EISN/QMXLC/IV/BO /A /000/999/5325N00616W005\nA) EIDW B) 2312110946 C) 2403112300 EST\nE) TAXIWAY Z CLOSED\nREF AIP SUPPLEMENT 027/2022\n\nCREATED: 11 DEC 2023 09:47\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A3531_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/warning_icon.png",
+              "mapIt": false,
+              "alertType": "Warning"
+            },
+            {
+              "id": "A3532/23",
+              "xid": null,
+              "idshow": "A3532/23",
+              "text": "TWY A CLOSED. 11 DEC 09:55 2023 UNTIL 11 MAR 17:00 2024. CREATED: 11 DEC\n09:55 2023",
+              "rawtext": "\nA3532/23 NOTAMR A2524/23\nQ) EISN/QMXLC/IV/BO /A /000/999/5325N00616W005\nA) EIDW B) 2312110955 C) 2403111700 EST\nE) TWY A CLOSED\n\nCREATED: 11 DEC 2023 09:55\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A3532_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/warning_icon.png",
+              "mapIt": false,
+              "alertType": "Warning"
+            },
+            {
+              "id": "A3534/23",
+              "xid": null,
+              "idshow": "A3534/23",
+              "text": "TWY E2 CLOSED. 11 DEC 10:35 2023 UNTIL 10 MAR 12:00 2024. CREATED: 11 DEC\n10:35 2023",
+              "rawtext": "\nA3534/23 NOTAMN\nQ) EISN/QMXLC/IV/BO /A /000/999/5325N00616W005\nA) EIDW B) 2312111035 C) 2403101200 EST\nE) TWY E2 CLOSED\n\nCREATED: 11 DEC 2023 10:35\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A3534_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/warning_icon.png",
+              "mapIt": false,
+              "alertType": "Warning"
+            },
+            {
+              "id": "B0191/24",
+              "xid": null,
+              "idshow": "B0191/24",
+              "text": "DVOR/DME DUB/DUBLIN 114.9MHZ CH96X U/S. 28 FEB 00:01 2024 UNTIL 28 FEB\n06:00 2024. CREATED: 22 FEB 15:20 2024",
+              "rawtext": "\nB0191/24 NOTAMN\nQ) EISN/QNMAS/IV/BO /AE/000/999/5330N00618W025\nA) EIDW B) 2402280001 C) 2402280600\nE) DVOR/DME DUB/DUBLIN 114.9MHZ CH96X U/S\n\nCREATED: 22 FEB 2024 15:20\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_B0191_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/caution_icon.png",
+              "mapIt": false,
+              "alertType": "Caution"
+            },
+            {
+              "id": "A0346/24",
+              "xid": null,
+              "idshow": "A0346/24",
+              "text": "WORKS ON GOING INCLUDING RESTRICTIONS TO AIRCRAFT MOVEMENTS\nTRIGGERING SUPPLEMENT 024/2022. 09 FEB 09:05 2024 UNTIL 09 MAY 12:00 2024.\nCREATED: 09 FEB 09:05 2024",
+              "rawtext": "\nA0346/24 NOTAMR A3205/23\nQ) EISN/QFAXX/IV/BO /A /000/999/5325N00616W005\nA) EIDW B) 2402090905 C) 2405091200 EST\nE) WORKS ON GOING INCLUDING RESTRICTIONS TO AIRCRAFT MOVEMENTS\nTRIGGERING SUPPLEMENT 024/2022\n\nCREATED: 09 FEB 2024 09:05\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0346_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "B1124/23",
+              "xid": null,
+              "idshow": "B1124/23",
+              "text": "ILS GP RWY 16 HAS A RDH OF 50FT\nREF AIP EIDW AD 2.19 REMARKS TABLE. 24 AUG 14:24 2023 UNTIL PERM.UNTIL\nnull. CREATED: 24 AUG 14:27 2023",
+              "rawtext": "B1124/23 NOTAMN\nQ) EISN/QIGXX/I /NBO/A /000/999/5325N00616W005\nA) EIDW B) 2308241424 C) PERM\nE) ILS GP RWY 16 HAS A RDH OF 50FT\nREF AIP EIDW AD 2.19 REMARKS TABLE\nCREATED: 24 AUG 2023 14:27\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_B1124_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "N0002/24",
+              "xid": null,
+              "idshow": "N0002/24",
+              "text": "OBSTACLE, TEMPORARY MOBILE CRANE, VANTAGE BUSINESS PARK DUBLIN 11.\nPOSITION 532459.9N 0061913.1W WITHIN A RADIUS OF 80M\nELEVATION 393FT AMSL\nOBSTACLE LIGHTED. DAILY 0700-1900, 18 JAN 11:17 2024 UNTIL 05 MAR 19:00\n2024. CREATED: 18 JAN 11:18 2024",
+              "rawtext": "\nN0002/24 NOTAMN\nQ) EISN/QOBCE/IV/M  /AE/000/004/5325N00619W001\nA) EIDW B) 2401181117 C) 2403051900 EST\nD) DAILY 0700-1900\nE) OBSTACLE, TEMPORARY MOBILE CRANE, VANTAGE BUSINESS PARK DUBLIN 11.\nPOSITION 532459.9N 0061913.1W WITHIN A RADIUS OF 80M\nELEVATION 393FT AMSL\nOBSTACLE LIGHTED\n\nCREATED: 18 JAN 2024 11:18\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_N0002_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "B1138/15",
+              "xid": null,
+              "idshow": "B1138/15",
+              "text": "HOLDING PROCEDURE CHANGED. RATE OF DESCENT IN HOLDING PATTERNS \nAMENDED TO: A STANDARD RATE OF DESCENT OF 1000FT PER MIN IN HOLDING \nPATTERNS WILL BE USED UNLESS OTHERWISE INSTRUCTED BY ATC. PILOTS \nMUST ADVISE ATC IF UNABLE TO COMPLY WITH THE STANDARD RATE OF \nDESCENT. \nREF AIP EIDW AD 2.22 SECTION 8. 02 OCT 17:47 2015 UNTIL PERM.UNTIL null.\nCREATED: 01 MAY 11:24 2017",
+              "rawtext": "\nB1138/15 NOTAMN\nQ) EISN/QPHCH/IV/BO /AE/000/999/5325N00616W025\nA) EIDW B) 1510021747 C) PERM\nE) HOLDING PROCEDURE CHANGED. RATE OF DESCENT IN HOLDING PATTERNS \nAMENDED TO: A STANDARD RATE OF DESCENT OF 1000FT PER MIN IN HOLDING \nPATTERNS WILL BE USED UNLESS OTHERWISE INSTRUCTED BY ATC. PILOTS \nMUST ADVISE ATC IF UNABLE TO COMPLY WITH THE STANDARD RATE OF \nDESCENT. \nREF AIP EIDW AD 2.22 SECTION 8\n\nCREATED: 01 MAY 2017 11:24\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_B1138_15",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0270/24",
+              "xid": null,
+              "idshow": "A0270/24",
+              "text": "THROUGH TAXIING NOT PERMITTED ON TWY F-OUTER TO/FROM \nAPRON TWY 1 THROUGH LINK 5\nREF AIP SUPPLEMENT 009/2023. 29 JAN 22:50 2024 UNTIL 28 APR 20:00 2024.\nCREATED: 29 JAN 23:22 2024",
+              "rawtext": "\nA0270/24 NOTAMN\nQ) EISN/QMXXX/IV/NBO/A /000/999/5325N00616W005\nA) EIDW B) 2401292250 C) 2404282000\nE) THROUGH TAXIING NOT PERMITTED ON TWY F-OUTER TO/FROM \nAPRON TWY 1 THROUGH LINK 5\nREF AIP SUPPLEMENT 009/2023\n\nCREATED: 29 JAN 2024 23:22\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0270_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0223/24",
+              "xid": null,
+              "idshow": "A0223/24",
+              "text": "NEW END DATE TO SUP 016/2023, EIDW - POINT MERGE FUELLING STARS \nWITHDRAWAL: EXTENDED UNTIL 21 MAR 2024.\nREF AIP IRELAND ENR 1.10 FLIGHT PLANNING PARA 7, EIDW AD 2.24-22.4, \nEIDW AD 2.24-23.5. 24 JAN 16:17 2024 UNTIL 20 MAR 23:59 2024. CREATED: 24\nJAN 16:18 2024",
+              "rawtext": "\nA0223/24 NOTAMN\nQ) EISN/QPIXX/I /NBO/A /000/999/5325N00616W005\nA) EIDW B) 2401241617 C) 2403202359 EST\nE) NEW END DATE TO SUP 016/2023, EIDW - POINT MERGE FUELLING STARS \nWITHDRAWAL: EXTENDED UNTIL 21 MAR 2024.\nREF AIP IRELAND ENR 1.10 FLIGHT PLANNING PARA 7, EIDW AD 2.24-22.4, \nEIDW AD 2.24-23.5.\n\nCREATED: 24 JAN 2024 16:18\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0223_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0263/24",
+              "xid": null,
+              "idshow": "A0263/24",
+              "text": "THROUGH TAXIING NOT PERMITTED BETWEEN TWY M1 AND TWY F INNER. 29 JAN 16:14\n2024 UNTIL 10 APR 23:30 2024. CREATED: 29 JAN 16:15 2024",
+              "rawtext": "\nA0263/24 NOTAMN\nQ) EISN/QMXLT/IV/M  /A /000/999/5325N00616W005\nA) EIDW B) 2401291614 C) 2404102330\nE) THROUGH TAXIING NOT PERMITTED BETWEEN TWY M1 AND TWY F INNER\n\nCREATED: 29 JAN 2024 16:15\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0263_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A3555/23",
+              "xid": null,
+              "idshow": "A3555/23",
+              "text": "EIDW ILS RDH PUBLISHED INCORRECTLY ON CHART\nPUBLISHED AS ILS RDH 54\nSHOULD READ ILS RDH 50\nREF AIP EIDW AD 2.24-39.1 MINIMA TABLE. 13 DEC 12:40 2023 UNTIL 14 MAR\n12:00 2024. CREATED: 13 DEC 12:40 2023",
+              "rawtext": "\nA3555/23 NOTAMR A2547/23\nQ) EISN/QPMCH/IV/NBO/A /000/999/5325N00616W005\nA) EIDW B) 2312131240 C) 2403141200 EST\nE) EIDW ILS RDH PUBLISHED INCORRECTLY ON CHART\nPUBLISHED AS ILS RDH 54\nSHOULD READ ILS RDH 50\nREF AIP EIDW AD 2.24-39.1 MINIMA TABLE\n\nCREATED: 13 DEC 2023 12:40\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A3555_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0083/24",
+              "xid": null,
+              "idshow": "A0083/24",
+              "text": "THROUGH TAXIING NOT PERMITTED ON TWY F-INNER TO/FROM LINK 4 TO \nABEAM STAND 119C\nREF AIP SUPPLEMENT 009/2023. 11 JAN 23:30 2024 UNTIL 10 APR 23:30 2024.\nCREATED: 11 JAN 18:38 2024",
+              "rawtext": "\nA0083/24 NOTAMN\nQ) EISN/QMXLT/IV/M  /A /000/999/5325N00616W005\nA) EIDW B) 2401112330 C) 2404102330\nE) THROUGH TAXIING NOT PERMITTED ON TWY F-INNER TO/FROM LINK 4 TO \nABEAM STAND 119C\nREF AIP SUPPLEMENT 009/2023\n\nCREATED: 11 JAN 2024 18:38\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0083_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0084/24",
+              "xid": null,
+              "idshow": "A0084/24",
+              "text": "THROUGH TAXIING NOT PERMITTED FROM APRON TWY 1 TO/FROM TWY F-INNER\nREF AIP SUPPLEMENT 009/2023. 11 JAN 23:30 2024 UNTIL 10 APR 23:30 2024.\nCREATED: 11 JAN 18:41 2024",
+              "rawtext": "\nA0084/24 NOTAMN\nQ) EISN/QMXLT/IV/M  /A /000/999/5325N00616W005\nA) EIDW B) 2401112330 C) 2404102330\nE) THROUGH TAXIING NOT PERMITTED FROM APRON TWY 1 TO/FROM TWY F-INNER\nREF AIP SUPPLEMENT 009/2023\n\nCREATED: 11 JAN 2024 18:41\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0084_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0085/24",
+              "xid": null,
+              "idshow": "A0085/24",
+              "text": "THROUGH TAXIING NOT PERMITTED BETWEEN TWY P1 AND APRON TWY 1 \nTHROUGH LINK 5\nREF AIP SUPPLEMENT 009/2023. 11 JAN 23:30 2024 UNTIL 10 APR 23:30 2024.\nCREATED: 11 JAN 18:44 2024",
+              "rawtext": "\nA0085/24 NOTAMN\nQ) EISN/QMXLT/IV/M  /A /000/999/5325N00616W005\nA) EIDW B) 2401112330 C) 2404102330\nE) THROUGH TAXIING NOT PERMITTED BETWEEN TWY P1 AND APRON TWY 1 \nTHROUGH LINK 5\nREF AIP SUPPLEMENT 009/2023\n\nCREATED: 11 JAN 2024 18:44\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0085_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "B0011/24",
+              "xid": null,
+              "idshow": "B0011/24",
+              "text": "AUTOMATIC TERMINAL INFORMATION SERVICE (ATIS) DUBLIN INFORMATION \nDEPARTURE FREQ 129.640MHZ U/S\nREF AIP EIDW AD 2.18 ATS COMMUNICATION FACILITIES. 04 JAN 17:48 2024 UNTIL\n06 APR 12:00 2024. CREATED: 04 JAN 17:48 2024",
+              "rawtext": "\nB0011/24 NOTAMR B1369/23\nQ) EISN/QSAAS/IV/BO /A /000/999/5325N00616W005\nA) EIDW B) 2401041748 C) 2404061200 EST\nE) AUTOMATIC TERMINAL INFORMATION SERVICE (ATIS) DUBLIN INFORMATION \nDEPARTURE FREQ 129.640MHZ U/S\nREF AIP EIDW AD 2.18 ATS COMMUNICATION FACILITIES\n\nCREATED: 04 JAN 2024 17:48\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_B0011_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0391/24",
+              "xid": null,
+              "idshow": "A0391/24",
+              "text": "INSTRUMENT APPROACH PROCEDURES NOT AVAILABLE ON CHARTS VOR RWY \n28L AND RWY 10R\nREF EIDW AD 2.24-28.1\nREF EIDW AD 2.24-37.1. 13 FEB 12:51 2024 UNTIL 12 MAY 23:59 2024. CREATED:\n13 FEB 12:52 2024",
+              "rawtext": "\nA0391/24 NOTAMR A3182/23\nQ) EISN/QPIAU/I /NBO/A /000/999/5325N00616W005\nA) EIDW B) 2402131251 C) 2405122359 EST\nE) INSTRUMENT APPROACH PROCEDURES NOT AVAILABLE ON CHARTS VOR RWY \n28L AND RWY 10R\nREF EIDW AD 2.24-28.1\nREF EIDW AD 2.24-37.1\n\nCREATED: 13 FEB 2024 12:52\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0391_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0299/24",
+              "xid": null,
+              "idshow": "A0299/24",
+              "text": "RWY 28R AVAILABLE FOR DEPARTURES ONLY DURING OPERATIONAL HOURS. 02 FEB\n17:30 2024 UNTIL 01 MAY 17:00 2024. CREATED: 02 FEB 17:33 2024",
+              "rawtext": "\nA0299/24 NOTAMR A0235/24\nQ) EISN/QMRLT/IV/NBO/A /000/999/5325N00616W005\nA) EIDW B) 2402021730 C) 2405011700\nE) RWY 28R AVAILABLE FOR DEPARTURES ONLY DURING OPERATIONAL HOURS\n\nCREATED: 02 FEB 2024 17:33\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0299_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A3470/23",
+              "xid": null,
+              "idshow": "A3470/23",
+              "text": "RWY 10L STRAIGHT-IN APPROACH ILS CAT II INSTRUMENT APPROACH \nMINIMA NOT AVAILABLE.\nREF: EIDW AD 2.24-33.1. 05 DEC 13:50 2023 UNTIL 05 MAR 23:59 2024.\nCREATED: 05 DEC 13:50 2023",
+              "rawtext": "\nA3470/23 NOTAMR A2448/23\nQ) EISN/QPMXX/I /NBO/A /000/999/5325N00616W005\nA) EIDW B) 2312051350 C) 2403052359 EST\nE) RWY 10L STRAIGHT-IN APPROACH ILS CAT II INSTRUMENT APPROACH \nMINIMA NOT AVAILABLE.\nREF: EIDW AD 2.24-33.1\n\nCREATED: 05 DEC 2023 13:50\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A3470_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A3616/23",
+              "xid": null,
+              "idshow": "A3616/23",
+              "text": "RWY 28L VOR-T IAP NOT AVAILABLE\nEIDW AD 2.24-45. 18 DEC 10:09 2023 UNTIL 17 MAR 23:59 2024. CREATED: 18\nDEC 10:09 2023",
+              "rawtext": "\nA3616/23 NOTAMR A2597/23\nQ) EISN/QPIAU/I /NBO/A /000/999/5325N00616W005\nA) EIDW B) 2312181009 C) 2403172359 EST\nE) RWY 28L VOR-T IAP NOT AVAILABLE\nEIDW AD 2.24-45\n\nCREATED: 18 DEC 2023 10:09\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A3616_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A3615/23",
+              "xid": null,
+              "idshow": "A3615/23",
+              "text": "VISUAL APPROACHES RWY28R AND RWY10L NOT AVAILABLE \nREF EIDW AD 2.22 PARA 10.7. 18 DEC 10:04 2023 UNTIL 17 MAR 23:59 2024.\nCREATED: 18 DEC 10:04 2023",
+              "rawtext": "\nA3615/23 NOTAMR A2583/23\nQ) EISN/QPKAU/V /NBO/A /000/999/5325N00616W005\nA) EIDW B) 2312181004 C) 2403172359 EST\nE) VISUAL APPROACHES RWY28R AND RWY10L NOT AVAILABLE \nREF EIDW AD 2.22 PARA 10.7\n\nCREATED: 18 DEC 2023 10:04\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A3615_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0383/24",
+              "xid": null,
+              "idshow": "A0383/24",
+              "text": "TRIGGER NOTAM IRELAND AIRAC AMENDMENT NR 002,\nEFFECTIVE DATE 21 MAR 2024.\nINCLUDED IN THE AMENDMENT IS THE REVISED EIDW \nAD 2.12 RUNWAY PHYSICAL CHARACTERISTICS,\nAD 2.20 LOCAL TRAFFIC REGULATIONS,\nAD 2.22 FLIGHT PROCEDURES,\nAD 2.24 CHARTS RELATED TO AERODROME. 21 MAR 00:00 2024 UNTIL 04 APR 23:59\n2024. CREATED: 12 FEB 12:23 2024",
+              "rawtext": "\nA0383/24 NOTAMN\nQ) EISN/QFATT/IV/BO /A /000/999/5325N00616W005\nA) EIDW B) 2403210000 C) 2404042359\nE) TRIGGER NOTAM IRELAND AIRAC AMENDMENT NR 002,\nEFFECTIVE DATE 21 MAR 2024.\nINCLUDED IN THE AMENDMENT IS THE REVISED EIDW \nAD 2.12 RUNWAY PHYSICAL CHARACTERISTICS,\nAD 2.20 LOCAL TRAFFIC REGULATIONS,\nAD 2.22 FLIGHT PROCEDURES,\nAD 2.24 CHARTS RELATED TO AERODROME\n\nCREATED: 12 FEB 2024 12:23\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0383_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0059/24",
+              "xid": null,
+              "idshow": "A0059/24",
+              "text": "INSTRUMENT APPROACH PROCEDURES FOR NON-RNAV 1 EQUIPPED/CAPABLE \nAIRCRAFT FOR RUNWAYS 28R AND 10L NOT AVAILABLE,\nREF AIP EIDW AD 2.22 FLIGHT PROCEDURES, SECTION 2.3 AND 2.4. 08 JAN 15:04\n2024 UNTIL 30 APR 23:59 2024. CREATED: 08 JAN 15:04 2024",
+              "rawtext": "\nA0059/24 NOTAMR A2774/23\nQ) EISN/QPIXX/IV/NBO/AE/000/999/5325N00616W005\nA) EIDW B) 2401081504 C) 2404302359 EST\nE) INSTRUMENT APPROACH PROCEDURES FOR NON-RNAV 1 EQUIPPED/CAPABLE \nAIRCRAFT FOR RUNWAYS 28R AND 10L NOT AVAILABLE,\nREF AIP EIDW AD 2.22 FLIGHT PROCEDURES, SECTION 2.3 AND 2.4\n\nCREATED: 08 JAN 2024 15:04\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0059_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0130/24",
+              "xid": null,
+              "idshow": "A0130/24",
+              "text": "STANDARD ARRIVAL CHART - INSTRUMENT RNAV RWY 28L/R (WITHOUT \nLATERAL HOLDING/POINT MERGE) - LEVEL CONSTRAINTS AMENDED.\nOLAPO 3X - LEVEL RESTRICTION AT OLAPO PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nVATRY 3X - LEVEL RESTRICTION AT VATRY PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nBUNED 3X - LEVEL RESTRICTION AT BUNED PUBLISHED AT OR BELOW FL190 \nSHOULD READ AT OR BELOW FL230.\nSUTEX 3X - LEVEL RESTRICTION AT SUTEX PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nOSGAR 3X - LEVEL RESTRICTION AT OSGAR PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nNIMAT 3X - LEVEL RESTRICTION AT NIMAT PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL240.\nREF AIP EIDW AD 2.24-22.4. 16 JAN 07:23 2024 UNTIL 16 APR 23:59 2024.\nCREATED: 16 JAN 07:23 2024",
+              "rawtext": "\nA0130/24 NOTAMR A2700/23\nQ) EISN/QPIAU/I /NBO/A /000/999/5325N00616W005\nA) EIDW B) 2401160723 C) 2404162359 EST\nE) STANDARD ARRIVAL CHART - INSTRUMENT RNAV RWY 28L/R (WITHOUT \nLATERAL HOLDING/POINT MERGE) - LEVEL CONSTRAINTS AMENDED.\nOLAPO 3X - LEVEL RESTRICTION AT OLAPO PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nVATRY 3X - LEVEL RESTRICTION AT VATRY PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nBUNED 3X - LEVEL RESTRICTION AT BUNED PUBLISHED AT OR BELOW FL190 \nSHOULD READ AT OR BELOW FL230.\nSUTEX 3X - LEVEL RESTRICTION AT SUTEX PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nOSGAR 3X - LEVEL RESTRICTION AT OSGAR PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nNIMAT 3X - LEVEL RESTRICTION AT NIMAT PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL240.\nREF AIP EIDW AD 2.24-22.4\n\nCREATED: 16 JAN 2024 07:23\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0130_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0131/24",
+              "xid": null,
+              "idshow": "A0131/24",
+              "text": "STANDARD ARRIVAL CHART - INSTRUMENT RNAV RWY 28L/R (WITH LATERAL \nHOLDING/POINT MERGE) - LEVEL CONSTRAINTS AMENDED.\nOLAPO 3L - LEVEL RESTRICTION AT OLAPO PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nVATRY 3L - LEVEL RESTRICTION AT VATRY PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nBUNED 3L - LEVEL RESTRICTION AT BUNED PUBLISHED AT OR BELOW FL190 \nSHOULD READ AT OR BELOW FL230.\nSUTEX 3L - LEVEL RESTRICTION AT SUTEX PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nOSGAR 3L - LEVEL RESTRICTION AT OSGAR PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nNIMAT 3L - LEVEL RESTRICTION AT NIMAT PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nREF AIP EIDW AD 2.24-22.1. 16 JAN 07:23 2024 UNTIL 16 APR 23:59 2024.\nCREATED: 16 JAN 07:24 2024",
+              "rawtext": "\nA0131/24 NOTAMR A2701/23\nQ) EISN/QPIAU/I /NBO/A /000/999/5325N00616W005\nA) EIDW B) 2401160723 C) 2404162359 EST\nE) STANDARD ARRIVAL CHART - INSTRUMENT RNAV RWY 28L/R (WITH LATERAL \nHOLDING/POINT MERGE) - LEVEL CONSTRAINTS AMENDED.\nOLAPO 3L - LEVEL RESTRICTION AT OLAPO PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nVATRY 3L - LEVEL RESTRICTION AT VATRY PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nBUNED 3L - LEVEL RESTRICTION AT BUNED PUBLISHED AT OR BELOW FL190 \nSHOULD READ AT OR BELOW FL230.\nSUTEX 3L - LEVEL RESTRICTION AT SUTEX PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nOSGAR 3L - LEVEL RESTRICTION AT OSGAR PUBLISHED AT OR BELOW FL160 \nSHOULD READ AT OR BELOW FL230.\nNIMAT 3L - LEVEL RESTRICTION AT NIMAT PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nREF AIP EIDW AD 2.24-22.1\n\nCREATED: 16 JAN 2024 07:24\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0131_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0133/24",
+              "xid": null,
+              "idshow": "A0133/24",
+              "text": "STANDARD ARRIVAL CHART - INSTRUMENT RNAV RWY 10L/R (WITHOUT \nLATERAL HOLDING/POINT MERGE) - LEVEL CONSTRAINTS AMENDED.\nBAGSO 2Z - LEVEL RESTRICTION AT BAGSO PUBLISHED AT OR BELOW FL100\nSHOULD READ AT OR BELOW FL240.\nBOYNE 2Z - LEVEL RESTRICTION AT BOYNE PUBLISHED AT OR BELOW FL100 \nSHOULD READ AT OR BELOW FL240.\nLIPGO 2Z - LEVEL RESTRICTION AT LIPGO PUBLISHED AT OR BELOW FL100\nSHOULD READ AT OR BELOW FL240.\nVATRY 2Z  - LEVEL RESTRICTION AT VATRY PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nNIMAT 2Z - LEVEL RESTRICTION AT NIMAT PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nREF AIP EIDW AD 2.24-23.5. 16 JAN 07:24 2024 UNTIL 16 APR 23:59 2024.\nCREATED: 16 JAN 07:25 2024",
+              "rawtext": "\nA0133/24 NOTAMR A2703/23\nQ) EISN/QPIAU/I /NBO/A /000/999/5325N00616W005\nA) EIDW B) 2401160724 C) 2404162359 EST\nE) STANDARD ARRIVAL CHART - INSTRUMENT RNAV RWY 10L/R (WITHOUT \nLATERAL HOLDING/POINT MERGE) - LEVEL CONSTRAINTS AMENDED.\nBAGSO 2Z - LEVEL RESTRICTION AT BAGSO PUBLISHED AT OR BELOW FL100\nSHOULD READ AT OR BELOW FL240.\nBOYNE 2Z - LEVEL RESTRICTION AT BOYNE PUBLISHED AT OR BELOW FL100 \nSHOULD READ AT OR BELOW FL240.\nLIPGO 2Z - LEVEL RESTRICTION AT LIPGO PUBLISHED AT OR BELOW FL100\nSHOULD READ AT OR BELOW FL240.\nVATRY 2Z  - LEVEL RESTRICTION AT VATRY PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nNIMAT 2Z - LEVEL RESTRICTION AT NIMAT PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nREF AIP EIDW AD 2.24-23.5\n\nCREATED: 16 JAN 2024 07:25\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0133_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A0132/24",
+              "xid": null,
+              "idshow": "A0132/24",
+              "text": "STANDARD ARRIVAL CHART - INSTRUMENT RNAV RWY 10L/R (WITH LATERAL \nHOLDING/POINT MERGE) - LEVEL CONSTRAINTS AMENDED.\nBAGSO 2R - LEVEL RESTRICTION AT BAGSO PUBLISHED AT OR BELOW FL100\nSHOULD READ AT OR BELOW FL240.\nBOYNE 2R - LEVEL RESTRICTION AT BOYNE PUBLISHED AT OR BELOW FL100 \nSHOULD READ AT OR BELOW FL240.\nLIPGO 2R - LEVEL RESTRICTION AT LIPGO PUBLISHED AT OR BELOW FL100\nSHOULD READ AT OR BELOW FL240.\nVATRY 2R  - LEVEL RESTRICTION AT VATRY PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nNIMAT 2R - LEVEL RESTRICTION AT NIMAT PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nREF AIP EIDW AD 2.24-23.1. 16 JAN 07:24 2024 UNTIL 16 APR 23:59 2024.\nCREATED: 16 JAN 07:24 2024",
+              "rawtext": "\nA0132/24 NOTAMR A2702/23\nQ) EISN/QPIAU/I /NBO/A /000/999/5325N00616W005\nA) EIDW B) 2401160724 C) 2404162359 EST\nE) STANDARD ARRIVAL CHART - INSTRUMENT RNAV RWY 10L/R (WITH LATERAL \nHOLDING/POINT MERGE) - LEVEL CONSTRAINTS AMENDED.\nBAGSO 2R - LEVEL RESTRICTION AT BAGSO PUBLISHED AT OR BELOW FL100\nSHOULD READ AT OR BELOW FL240.\nBOYNE 2R - LEVEL RESTRICTION AT BOYNE PUBLISHED AT OR BELOW FL100 \nSHOULD READ AT OR BELOW FL240.\nLIPGO 2R - LEVEL RESTRICTION AT LIPGO PUBLISHED AT OR BELOW FL100\nSHOULD READ AT OR BELOW FL240.\nVATRY 2R  - LEVEL RESTRICTION AT VATRY PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nNIMAT 2R - LEVEL RESTRICTION AT NIMAT PUBLISHED AT OR BELOW FL230 \nSHOULD READ AT OR BELOW FL240.\nREF AIP EIDW AD 2.24-23.1\n\nCREATED: 16 JAN 2024 07:24\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A0132_24",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            },
+            {
+              "id": "A3469/23",
+              "xid": null,
+              "idshow": "A3469/23",
+              "text": "RWY 28R STRAIGHT-IN APPROACH ILS CAT II INSTRUMENT APPROACH \nMINIMA NOT AVAILABLE.\nEIDW AD 2.24-30.1. 05 DEC 13:48 2023 UNTIL 05 MAR 23:59 2024. CREATED: 05\nDEC 13:48 2023",
+              "rawtext": "\nA3469/23 NOTAMR A2447/23\nQ) EISN/QPMXX/I /NBO/A /000/999/5325N00616W005\nA) EIDW B) 2312051348 C) 2403052359 EST\nE) RWY 28R STRAIGHT-IN APPROACH ILS CAT II INSTRUMENT APPROACH \nMINIMA NOT AVAILABLE.\nEIDW AD 2.24-30.1\n\nCREATED: 05 DEC 2023 13:48\nSOURCE: EUECYIYN",
+              "key": "EIDW_I_EINNYNYX_A3469_23",
+              "filter": "DEFAULT",
+              "alerts": "images/category/default.png",
+              "mapIt": false,
+              "alertType": "Default"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notamType": [
+    {
+      "code": "ALL",
+      "name": "Include All",
+      "codeName": "ALL - Include All"
+    },
+    {
+      "code": "DAFIF/FLIP",
+      "name": "DAFIF/FLIP Chart Notices",
+      "codeName": "DAFIF/FLIP - DAFIF/FLIP Chart Notices"
+    },
+    {
+      "code": "FDC",
+      "name": "Flight Data Center",
+      "codeName": "FDC - Flight Data Center"
+    },
+    {
+      "code": "LASER",
+      "name": "Laser Show",
+      "codeName": "LASER - Laser Show"
+    },
+    {
+      "code": "MOA",
+      "name": "Military Operating Area",
+      "codeName": "MOA - Military Operating Area"
+    },
+    {
+      "code": "VIP TFR",
+      "name": "Presidential TFR",
+      "codeName": "VIP TFR - Presidential TFR"
+    },
+    {
+      "code": "RVSM",
+      "name": "Reduced Vertical Separation",
+      "codeName": "RVSM - Reduced Vertical Separation"
+    },
+    {
+      "code": "SPECIAL NOTICE",
+      "name": "Special Notices",
+      "codeName": "SPECIAL NOTICE - Special Notices"
+    },
+    {
+      "code": "TFR",
+      "name": "Temporary Flight Restrictions",
+      "codeName": "TFR - Temporary Flight Restrictions"
+    },
+    {
+      "code": "TOWER",
+      "name": "Tower and Obstruction Notams",
+      "codeName": "TOWER - Tower and Obstruction Notams"
+    }
+  ],
+  "legends": [
+    {
+      "code": "1",
+      "name": "Warning",
+      "uri": "images/category/warning_icon.png",
+      "codeName": "1 - Warning"
+    },
+    {
+      "code": "5",
+      "name": "Caution",
+      "uri": "images/category/caution_icon.png",
+      "codeName": "5 - Caution"
+    }
+  ],
+  "filters": null,
+  "candidateNotamMsg": "CAUTION: Due to service interruptions, please review Temporary Flight Advisories for mission impact.",
+  "locCnt": "(2)",
+  "typeText": "Locations"
+}
