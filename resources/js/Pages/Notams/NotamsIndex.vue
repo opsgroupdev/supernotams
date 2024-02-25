@@ -161,9 +161,9 @@ const toggleDetails = (notamId) => {
                             <h2 class="p-3 text-xl capitalize text-gray-700 leading-10">
                                 {{ category }} <span class="uppercase pl-5">{{ airportId }}</span>
                             </h2>
-                            <table class="table-auto w-full text-sm text-left text-gray-600 dark:text-gray-400 mb-20">
+                            <table class="table-auto w-full text-sm text-left text-gray-600 mb-20">
                                 <thead
-                                    class="text-xs text-white uppercase bg-gray-600 dark:bg-gray-700 dark:text-gray-400">
+                                    class="text-xs text-white uppercase bg-gray-600">
                                 <tr>
                                     <th class="px-6 py-3 w-28">Notam ID</th>
                                     <th class="px-6 py-3 w-12">Code</th>
@@ -179,7 +179,7 @@ const toggleDetails = (notamId) => {
                                             {{ notam.id }}
                                         </td>
                                         <td class="px-6 py-3" v-text="notam.code"></td>
-                                        <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                        <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"
                                             v-text="notam.type"></td>
                                         <td class="px-6 py-3" v-text="notam.summary"></td>
                                     </tr>

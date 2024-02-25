@@ -12,10 +12,10 @@ Route::get('/download/{cacheKey}', [NotamController::class, 'show'])->name('nota
 
 Route::get('/home', function () {
     return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => false,
+        'canLogin'       => Route::has('login'),
+        'canRegister'    => false,
         'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'phpVersion'     => PHP_VERSION,
     ]);
 });
 
