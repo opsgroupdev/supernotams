@@ -1,4 +1,22 @@
 ### Get notams from api server
 GET https://api.anbdata.com/anb/states/notams/notams-realtime-list?
     api_key={{notamapikey}}&
-    locations=einn,eick
+    locations=EICK,EIDW
+
+### Get notams from DAIP server
+POST https://www.daip.jcs.mil/daip/mobile/query
+Content-Type: application/json
+
+{
+  "type": "LOCATION",
+  "locs": "EICK,EIDW"
+}
+
+### Try FIRS with DAIP
+POST https://www.daip.jcs.mil/daip/mobile/query
+Content-Type: application/json
+
+{
+"type": "LOCATION",
+"locs": "EISN,EGTT"
+}
