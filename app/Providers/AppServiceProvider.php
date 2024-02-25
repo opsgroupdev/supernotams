@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use App\Actions\OpenAITagger;
-use App\Contracts\Tagger;
+use App\Actions\NotamICAOFetcher;
+use App\Actions\NotamOpenAiTagger;
+use App\Contracts\NotamFetcher;
+use App\Contracts\NotamTagger;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->app->bind(Tagger::class, OpenAITagger::class);
+        $this->app->bind(NotamFetcher::class, NotamICAOFetcher::class);
+        $this->app->bind(NotamTagger::class, NotamOpenAiTagger::class);
     }
 }

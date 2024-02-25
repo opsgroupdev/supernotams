@@ -29,7 +29,7 @@ class NotamMatrix
         $primaryNotams = [];
         $appendixNotams = [];
         $matrixOrder = $this->orderMatrix();
-        $taggedNotams = $taggedNotams->groupBy(fn (Notam $notam) => $notam->structure['location']);
+        $taggedNotams = $taggedNotams->groupBy(fn (Notam $notam) => substr($notam->id, -4));
 
         foreach ($airports as $airportType => $airportCodes) {
             foreach ($airportCodes as $airportCode) {

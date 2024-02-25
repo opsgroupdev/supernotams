@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Actions\NotamFetcherAction;
+use App\Contracts\NotamFetcher;
 use App\Enum\LLM;
 use App\Enum\NotamStatus;
 use App\Models\Notam;
@@ -31,20 +31,17 @@ class NotamRequestJob implements ShouldQueue
 
     protected function insertToDatabase(Collection $notams): void
     {
+        //TODO, should we update the structure here?
         Notam::upsert(
-            $notams->map(fn ($notam) => [
-                'id'        => $notam['key'],
-                'structure' => json_encode($notam),
-            ])
-                ->toArray(),
+            $notams->toArray(),
             ['id'],
-            [], //TODO, should we update the structure here?
+            [],
         );
     }
 
     protected function notamsFromApi(): Collection
     {
-        return NotamFetcherAction::fetch($this->locations());
+        return app(NotamFetcher::class)->get($this->locations());
     }
 
     protected function locations(): Collection

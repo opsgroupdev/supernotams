@@ -81,7 +81,7 @@
                                     <td class="py-2 px-4 whitespace-break-spaces text-lg">{{$notam['summary']}}</td>
                                 </tr>
                                 <tr class="border-b-2 border-b-gray-600">
-                                    <td colspan="4" class="whitespace-pre font-mono p-2 text-sm">{{$notam['structure']['all']}}</td>
+                                    <td colspan="4" class="whitespace-pre font-mono p-2 text-sm">{{$notam['fullText']}}</td>
                                 </tr>
                             </table>
                         </td>

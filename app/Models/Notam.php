@@ -16,9 +16,9 @@ class Notam extends Model
     public $keyType = 'string';
 
     protected $casts = [
-        'structure' => 'array',
-        'status'    => NotamStatus::class,
-        'llm'       => LLM::class,
+        'source' => 'array',
+        'status' => NotamStatus::class,
+        'llm'    => LLM::class,
     ];
 
     protected $guarded = [];

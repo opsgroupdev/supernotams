@@ -3,9 +3,10 @@
 namespace App\Jobs;
 
 use App\Actions\FlightPlanParser;
-use App\Actions\NotamFetcherAction;
 use App\Actions\NotamMatrix;
 use App\Actions\PDFCreator;
+use App\Contracts\NotamFetcher;
+use App\DTO\AtcFlightPlan;
 use App\Events\NotamProcessingEvent;
 use App\Events\NotamResultEvent;
 use App\Events\PdfResultEvent;
@@ -15,7 +16,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Collection;
 use Throwable;
 
 class NotamProcessingJob implements ShouldQueue
@@ -30,22 +30,23 @@ class NotamProcessingJob implements ShouldQueue
 
     public function handle(
         FlightPlanParser $fpParser,
-        NotamFetcherAction $notamRetriever,
+        NotamFetcher $notamFetcher,
         NotamMatrix $matrix,
         PDFCreator $PDFCreator,
     ): void {
         try {
             $this->sendMessage('Extracting all data out of the ATC flightplan');
 
-            $airports = $fpParser->parse($this->flightPlan);
-            $this->sendMessage($this->airportList($airports));
+            $icaoLocations = $fpParser->parse($this->flightPlan);
+            $this->sendMessage($this->tableOf($icaoLocations));
 
-            $rawNotams = $notamRetriever->get($airports);
-            $this->sendMessage("My goodness, what a lot of notams you've asked for! - I've just received {$rawNotams->count()} of them!<br /><br /> Time to process everything.");
+            $this->sendMessage("Fetching all valid notams for your {$icaoLocations->allLocations()->count()} locations.");
+            $rawNotams = $notamFetcher->get($icaoLocations->allLocations());
+            $this->sendMessage("Just received {$rawNotams->count()} valid notams!<br /><br /> Time to process everything.");
 
-            $taggedNotams = Notam::whereIn('id', $rawNotams->pluck('key'))->get();
+            $taggedNotams = Notam::whereIn('id', $rawNotams->pluck('id'))->get();
 
-            $filteredNotams = $matrix->filter($airports, $taggedNotams);
+            $filteredNotams = $matrix->filter($icaoLocations, $taggedNotams);
             $this->sendMessage('We got them all! Sending the results');
             event(new NotamResultEvent($this->channelName, $filteredNotams));
 
@@ -58,9 +59,9 @@ class NotamProcessingJob implements ShouldQueue
         }
     }
 
-    private function airportList(Collection $airportsAndFirs): string
+    private function tableOf(AtcFlightPlan $icaoLocations): string
     {
-        return view('partials.airportList')->with('airports', $airportsAndFirs)->render();
+        return view('partials.tableOfLocations')->with('icaoLocations', $icaoLocations)->render();
     }
 
     protected function sendMessage(string $message, $type = 'success'): void

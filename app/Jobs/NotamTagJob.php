@@ -2,10 +2,11 @@
 
 namespace App\Jobs;
 
+use App\Contracts\NotamTagger;
 use App\Enum\LLM;
 use App\Enum\NotamStatus;
+use App\Exceptions\TaggingConnectionException;
 use App\Models\Notam;
-use App\OpenAI\Prompt;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,9 +14,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Log;
-use OpenAI\Exceptions\TransporterException;
-use OpenAI\Laravel\Facades\OpenAI;
-use OpenAI\Responses\Chat\CreateResponse;
 
 class NotamTagJob implements ShouldQueue
 {
@@ -32,20 +30,16 @@ class NotamTagJob implements ShouldQueue
         $this->onQueue('tagging');
     }
 
-    public function handle(OpenAI $openAi): void
+    public function handle(NotamTagger $tagger): void
     {
         $this->startTime = hrtime(true);
 
         try {
-            $aiResponse = $this->openAiRequest($openAi);
-
-            if ($aiResponse->choices[0]->finishReason !== 'stop') {
-                throw new Exception("Open AI finish reason was {$aiResponse->choices[0]->finishReason}");
-            }
-
-            $this->tagNotam($aiResponse);
-        } catch (TransporterException $transporterException) {
-            $this->retryWithDelay($transporterException);
+            $tagger
+                ->setLLM($this->llm)
+                ->tag($this->notam);
+        } catch (TaggingConnectionException $connectionException) {
+            $this->retryWithDelay($connectionException);
         } catch (Exception $errorException) {
             $this->retryImmediately($errorException);
         }
@@ -53,61 +47,10 @@ class NotamTagJob implements ShouldQueue
         $this->simpleRateLimit();
     }
 
-    /**
-     * @throws TransporterException
-     */
-    protected function openAiRequest(OpenAI $openAi): CreateResponse
-    {
-        return $openAi::chat()
-            ->create([
-                'model'           => $this->llm->label(), //gpt-4, gpt-4-turbo-preview, gpt-3.5-turbo
-                'response_format' => ['type' => 'json_object'],
-                'messages'        => array_merge(
-                    Prompt::get(),
-                    [['role' => 'user', 'content' => json_encode($this->notam->structure)]]
-                ),
-            ]);
-    }
-
-    protected function tagNotam(CreateResponse $response): void
-    {
-        $result = json_decode(
-            json: $response->choices[0]->message->content,
-            associative: true,
-            flags: JSON_THROW_ON_ERROR
-        );
-
-        $this->notam->update(
-            [
-                'code'    => $result['code'],
-                'type'    => $result['type'],
-                'summary' => $result['summary'],
-                'status'  => NotamStatus::TAGGED,
-                'llm'     => $this->llm->value,
-            ]);
-
-        $this->logData($response);
-    }
-
-    protected function logData(CreateResponse $response): void
-    {
-        Log::info(sprintf('Tag Success: %s - %s - Prompt: %s - Completion: %s - Total: %s - RqRemain: %s - RqReset: %s - TokRemain: %s - TokReset: %s',
-            $this->notam->id,
-            $response->model,
-            $response->usage->promptTokens,
-            $response->usage->completionTokens,
-            $response->usage->totalTokens,
-            $response->meta()->requestLimit->remaining,
-            $response->meta()->requestLimit->reset,
-            $response->meta()->tokenLimit->remaining,
-            $response->meta()->tokenLimit->reset,
-        ));
-    }
-
-    protected function retryWithDelay(TransporterException $transporterException): void
+    protected function retryWithDelay(TaggingConnectionException $exception): void
     {
         //We should retry this with an exponential delay.
-        Log::error("{$this->notam->id} - OpenAI Connection Issue: {$transporterException->getMessage()}");
+        Log::error("{$this->notam->id} - Tagger Connection Issue: {$exception->getMessage()}");
 
         if ($this->attempts() === $this->tries) {
             $this->notam->update(['status' => NotamStatus::UNTAGGED]);
@@ -120,8 +63,7 @@ class NotamTagJob implements ShouldQueue
 
     protected function retryImmediately(Exception $errorException): void
     {
-        //We should try this again immediately.
-        Log::error("{$this->notam->id} - OpenAI Error: {$errorException->getMessage()}");
+        Log::error("{$this->notam->id} - Tagger Error: {$errorException->getMessage()}");
 
         $this->attempts() === $this->tries
             ? $this->notam->update(['status' => NotamStatus::ERROR])
