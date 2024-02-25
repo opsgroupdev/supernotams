@@ -19,8 +19,13 @@ class NotamFactory extends Factory
         //$id = $notamId."-$airport";
 
         return [
-            'id'        => $this->faker->unique()->regexify('[ABC]\d{4}\/2[3-4]').'-'.$this->faker->randomElement(str(Airports::ALL)->upper()->explode(',')->toArray()),
-            'structure' => function (array $attributes) {
+            'id'       => $this->faker->unique()->regexify('[ABC]\d{4}\/2[3-4]').'-'.$this->faker->randomElement(str(Airports::ALL)->upper()->explode(',')->toArray()),
+            'fullText' => $this->faker->words(50, true),
+            'code'     => null,
+            'type'     => null,
+            'summary'  => null,
+            'status'   => NotamStatus::UNTAGGED,
+            'source'   => function (array $attributes) {
                 return [
                     'key'      => $attributes['id'],
                     'location' => substr($attributes['id'], -4),
@@ -28,10 +33,6 @@ class NotamFactory extends Factory
                     'Created'  => $this->faker->dateTimeBetween('-1 week', '+1 week')->format('c'),
                 ];
             },
-            'code'       => null,
-            'type'       => null,
-            'summary'    => null,
-            'status'     => NotamStatus::UNTAGGED,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

@@ -10,11 +10,12 @@ return new class extends Migration
     {
         Schema::create('notams', function (Blueprint $table) {
             $table->string('id', 20)->unique();
-            $table->json('structure');
-            $table->string('code', 4)->nullable();
+            $table->longText('fullText')->nullable();
+            $table->string('code', 2)->nullable();
             $table->string('type')->nullable();
             $table->text('summary')->nullable();
             $table->tinyInteger('status')->default(0);
+            $table->json('source');
             $table->timestamps();
         });
     }
