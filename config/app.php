@@ -186,4 +186,9 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    /*
+     * Use a custom user agent so if someone needs to get in contact with us they can.
+     */
+    'user-agent' => 'Notams Sprint Demo App / 1.0 - https://fixingnotams.org/ | jonnywilliamson@gmail.com',
+
 ];
