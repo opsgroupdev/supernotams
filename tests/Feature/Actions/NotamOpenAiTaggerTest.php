@@ -45,6 +45,7 @@ it('tags and logs a notam correctly', function () {
             ],
         ]),
     ]);
+    Log::shouldReceive('debug')->once()->with(Mockery::on(fn ($message) => str_contains($message, 'Runway 16/34 closed for takeoff and landing')));
     Log::shouldReceive('info')->once()->with(Mockery::on(fn ($message) => str_contains($message, "Tag Success: {$notam->id} - gpt-3.5-turbo")));
 
     expect($notam->status)->toBe(NotamStatus::PROCESSING);
@@ -73,6 +74,7 @@ it('throws a custom connection exception if it cannot connect to openai', functi
 
 it('throws a an exception if the data from openai is not suitable for the database', function () {
     Log::shouldReceive('info')->never();
+    Log::shouldReceive('debug')->once()->with(Mockery::on(fn ($message) => str_contains($message, '"key": "A0407/24-EIDW"')));
     OpenAI::fake([
         CreateResponse::fake([
             'choices' => [
