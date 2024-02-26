@@ -185,7 +185,7 @@ const toggleDetails = (notamId) => {
                                     </tr>
                                     <tr v-if="expandedNotam === notam.id" class="bg-gray-100 text-gray-600">
                                         <td colspan="4" class="px-6 py-4 font-mono whitespace-pre"
-                                            v-text="notam.structure.all"></td>
+                                            v-text="notam.fullText"></td>
                                     </tr>
                                 </template>
                                 </tbody>
