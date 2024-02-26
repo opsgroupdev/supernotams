@@ -1,6 +1,6 @@
 <?php
 
-use App\Actions\NotamMatrix;
+use App\Actions\NotamFilter;
 use App\Models\Notam;
 
 it('sorts notams into primary and appendix categories in the correct order', function () {
@@ -49,7 +49,8 @@ it('sorts notams into primary and appendix categories in the correct order', fun
         'destinationAlternates' => ['EINN', 'EIKN'],
     ];
 
-    $results = NotamMatrix::process($airports, $taggedNotams);
+    $notamFilter = new NotamFilter();
+    $results = $notamFilter->filter($airports, $taggedNotams);
 
     expect($results['primary']['departureAirport']['EGAA']->pluck('code'))->toMatchArray(['P3', 'A2', 'A4', 'R1', 'R2', 'R3', 'C4']);
     expect($results['primary']['destinationAirport']['EIDW']->pluck('code'))->toMatchArray(['A1', 'A2', 'A3', 'R1', 'R2', 'R4']);

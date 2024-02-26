@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Actions\FlightPlanParser;
-use App\Actions\NotamMatrix;
+use App\Actions\NotamFilter;
 use App\Actions\PDFCreator;
 use App\Contracts\NotamFetcher;
 use App\DTO\AtcFlightPlan;
@@ -31,7 +31,7 @@ class NotamProcessingJob implements ShouldQueue
     public function handle(
         FlightPlanParser $fpParser,
         NotamFetcher $notamFetcher,
-        NotamMatrix $matrix,
+        NotamFilter $notamFilter,
         PDFCreator $PDFCreator,
     ): void {
         try {
@@ -46,7 +46,7 @@ class NotamProcessingJob implements ShouldQueue
 
             $taggedNotams = Notam::whereIn('id', $rawNotams->pluck('id'))->get();
 
-            $filteredNotams = $matrix->filter($icaoLocations, $taggedNotams);
+            $filteredNotams = $notamFilter->filter($icaoLocations, $taggedNotams);
             $this->sendMessage('We got them all! Sending the results');
             event(new NotamResultEvent($this->channelName, $filteredNotams));
 
