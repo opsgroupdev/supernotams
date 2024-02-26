@@ -9,6 +9,7 @@ use App\Exceptions\TaggingConnectionException;
 use App\Models\Notam;
 use App\OpenAI\Prompt;
 use Exception;
+use Illuminate\Support\Str;
 use JsonException;
 use Log;
 use OpenAI\Exceptions\TransporterException;
@@ -80,7 +81,7 @@ class NotamOpenAiTagger extends NotamTagger
 
     protected function jsonDecodeAiResponse(): array
     {
-        Log::debug("{$this->notam->id} - {$this->aiResponse->choices[0]->message->content}");
+        Log::debug($this->notam->id.' - '.Str::squish($this->aiResponse->choices[0]->message->content));
 
         return json_decode(
             json: $this->aiResponse->choices[0]->message->content,
