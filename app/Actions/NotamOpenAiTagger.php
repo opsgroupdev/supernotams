@@ -43,7 +43,7 @@ class NotamOpenAiTagger extends NotamTagger
                     'response_format' => ['type' => 'json_object'],
                     'messages'        => array_merge(
                         Prompt::get(),
-                        [['role' => 'user', 'content' => $this->notam->fullText]]
+                        [['role' => 'user', 'content' => json_encode(['id' => $this->notam->id, 'text' => $this->notam->fullText])]]
                     ),
                 ]);
         } catch (TransporterException $exception) {

@@ -18,12 +18,14 @@ class Prompt
             [
                 'role'    => 'user',
                 'content' => <<<'EOL'
-I will give you a json_encoded NOTAM message. Each notam should be identified using the `key` field. The content uses the `all` field.
-Create a json object with exactly these 4 properties:
-"id": The notam `key` field.
-"type": Choose the most logical Tag for this NOTAM from the list of previous defined tags.
-"code": The code for the selected Tag Name from the list of previous defined codes.
-"summary": In very simple English only, explain the NOTAM in a maximum of seven words, use sentence case but do not use abbreviations.
+I will give you a json_encoded NOTAM message. Each notam should be identified using the `id` field. The content uses the `text` field.
+Create a json object exactly as follows:
+{
+    "id": The notam `id` field,
+    "type": Choose the most logical Tag for this NOTAM from the list of previous defined tags,
+    "code": The code for the selected Tag Name from the list of previous defined codes,
+    "summary": In very simple English only, explain the NOTAM in a maximum of seven words. Use sentence case but do not use abbreviations,
+}
 
 Do not use any formatting and ensure a valid json object is returned.
 EOL,
