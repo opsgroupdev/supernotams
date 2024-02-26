@@ -14,6 +14,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Log;
+use Throwable;
 
 class NotamTagJob implements ShouldQueue
 {
@@ -40,7 +41,7 @@ class NotamTagJob implements ShouldQueue
                 ->tag($this->notam);
         } catch (TaggingConnectionException $connectionException) {
             $this->retryWithDelay($connectionException);
-        } catch (Exception $errorException) {
+        } catch (Throwable $errorException) {
             $this->retryImmediately($errorException);
         }
 

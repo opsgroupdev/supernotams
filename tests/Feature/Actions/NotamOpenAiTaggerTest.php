@@ -38,7 +38,7 @@ it('tags and logs a notam correctly', function () {
                 [
                     'message' => [
                         'role'    => 'assistant',
-                        'content' => '{"key": "'.$notam->id.'","type": "Runway closed","code": "R1","summary": "Runway 16/34 closed for takeoff and landing"}',
+                        'content' => '{"id": "'.$notam->id.'","type": "Runway closed","code": "R1","summary": "Runway 16/34 closed for takeoff and landing"}',
                     ],
                     'finish_reason' => 'stop',
                 ],
@@ -72,6 +72,7 @@ it('throws a custom connection exception if it cannot connect to openai', functi
 })->throws(TaggingConnectionException::class);
 
 it('throws a an exception if the data from openai is not suitable for the database', function () {
+    Log::shouldReceive('info')->never();
     OpenAI::fake([
         CreateResponse::fake([
             'choices' => [
@@ -90,5 +91,4 @@ it('throws a an exception if the data from openai is not suitable for the databa
     $tagger->tag($notam);
 
 })
-    ->throws(Exception::class)
-    ->skip(); //sqlite does not throw exceptions when column length is too long. FFS.
+    ->throws(Error::class);

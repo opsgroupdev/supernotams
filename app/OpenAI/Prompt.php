@@ -20,9 +20,9 @@ class Prompt
                 'content' => <<<'EOL'
 I will give you a json_encoded NOTAM message. Each notam should be identified using the `key` field. The content uses the `all` field.
 Create a json object with exactly these 4 properties:
-"key": The notam `key` field.
+"id": The notam `key` field.
 "type": Choose the most logical Tag for this NOTAM from the list of previous defined tags.
-"code": The code for the selected Tag Name.
+"code": The code for the selected Tag Name from the list of previous defined codes.
 "summary": In very simple English only, explain the NOTAM in a maximum of seven words, use sentence case but do not use abbreviations.
 
 Do not use any formatting and ensure a valid json object is returned.

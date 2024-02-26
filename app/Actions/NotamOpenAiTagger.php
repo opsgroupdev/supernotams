@@ -3,6 +3,7 @@
 namespace App\Actions;
 
 use App\Contracts\NotamTagger;
+use App\DTO\TagData;
 use App\Enum\LLM;
 use App\Exceptions\TaggingConnectionException;
 use App\Models\Notam;
@@ -17,6 +18,8 @@ class NotamOpenAiTagger extends NotamTagger
 {
     protected Notam $notam;
 
+    protected $aiResponse;
+
     /**
      * @throws JsonException
      * @throws Exception
@@ -26,12 +29,14 @@ class NotamOpenAiTagger extends NotamTagger
         $this->notam = $notam;
 
         $this->updateNotam($this->openAiRequest());
+
+        $this->logData();
     }
 
-    protected function openAiRequest()
+    protected function openAiRequest(): TagData
     {
         try {
-            $response = OpenAI::chat()
+            $this->aiResponse = OpenAI::chat()
                 ->create([
                     'model'           => $this->llm->label(), //gpt-4, gpt-4-turbo-preview, gpt-3.5-turbo
                     'response_format' => ['type' => 'json_object'],
@@ -44,31 +49,25 @@ class NotamOpenAiTagger extends NotamTagger
             throw new TaggingConnectionException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
-        if ($response->choices[0]->finishReason !== 'stop') {
-            throw new Exception("Open AI finish reason was {$response->choices[0]->finishReason}");
+        if ($this->aiResponse->choices[0]->finishReason !== 'stop') {
+            throw new Exception("Open AI finish reason was {$this->aiResponse->choices[0]->finishReason}");
         }
 
-        $this->logData($response);
-
-        return json_decode(
-            json: $response->choices[0]->message->content,
-            associative: true,
-            flags: JSON_THROW_ON_ERROR
-        );
+        return new TagData(...$this->jsonDecodeAiResponse());
     }
 
-    protected function logData($aiResponse): void
+    protected function logData(): void
     {
         Log::info(sprintf('Tag Success: %s - %s - Prompt: %s - Completion: %s - Total: %s - RqRemain: %s - RqReset: %s - TokRemain: %s - TokReset: %s',
             $this->notam->id,
-            $aiResponse->model,
-            $aiResponse->usage->promptTokens,
-            $aiResponse->usage->completionTokens,
-            $aiResponse->usage->totalTokens,
-            $aiResponse->meta()->requestLimit->remaining,
-            $aiResponse->meta()->requestLimit->reset,
-            $aiResponse->meta()->tokenLimit->remaining,
-            $aiResponse->meta()->tokenLimit->reset,
+            $this->aiResponse->model,
+            $this->aiResponse->usage->promptTokens,
+            $this->aiResponse->usage->completionTokens,
+            $this->aiResponse->usage->totalTokens,
+            $this->aiResponse->meta()->requestLimit->remaining,
+            $this->aiResponse->meta()->requestLimit->reset,
+            $this->aiResponse->meta()->tokenLimit->remaining,
+            $this->aiResponse->meta()->tokenLimit->reset,
         ));
     }
 
@@ -77,5 +76,14 @@ class NotamOpenAiTagger extends NotamTagger
         $this->llm = $llm;
 
         return $this;
+    }
+
+    protected function jsonDecodeAiResponse(): array
+    {
+        return json_decode(
+            json: $this->aiResponse->choices[0]->message->content,
+            associative: true,
+            flags: JSON_THROW_ON_ERROR
+        );
     }
 }

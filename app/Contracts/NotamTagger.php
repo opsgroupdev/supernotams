@@ -2,6 +2,7 @@
 
 namespace App\Contracts;
 
+use App\DTO\TagData;
 use App\Enum\LLM;
 use App\Enum\NotamStatus;
 use App\Exceptions\TaggingConnectionException;
@@ -31,19 +32,19 @@ abstract class NotamTagger
 
     abstract public function setLLM(LLM $llm);
 
-    protected function updateNotam(array $tagData): void
+    protected function updateNotam(TagData $tagData): void
     {
         $this->notam->update(
             [
-                'code'    => $tagData['code'],
-                'type'    => $tagData['type'],
-                'summary' => $tagData['summary'],
+                'code'    => $tagData->code,
+                'type'    => $tagData->type,
+                'summary' => $tagData->summary,
                 'status'  => NotamStatus::TAGGED,
                 'llm'     => $this->llm->value,
             ]);
     }
 
-    protected function logData($aiResponse)
+    protected function logData()
     {
     }
 }
