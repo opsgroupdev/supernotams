@@ -7,7 +7,6 @@ use App\Enum\LLM;
 use App\Enum\NotamStatus;
 use App\Exceptions\TaggingConnectionException;
 use App\Models\Notam;
-use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -62,7 +61,7 @@ class NotamTagJob implements ShouldQueue
         }
     }
 
-    protected function retryImmediately(Exception $errorException): void
+    protected function retryImmediately(Throwable $errorException): void
     {
         Log::error("{$this->notam->id} - Tagger Error: {$errorException->getMessage()}");
 
