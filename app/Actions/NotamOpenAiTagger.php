@@ -81,7 +81,7 @@ class NotamOpenAiTagger extends NotamTagger
 
     protected function jsonDecodeAiResponse(): array
     {
-        Log::debug('Tag Data: '.$this->notam->id.' - '.Str::squish($this->aiResponse->choices[0]->message->content));
+        Log::debug('Tag Data:   '.$this->notam->id.' - '.Str::squish($this->aiResponse->choices[0]->message->content));
 
         return json_decode(
             json: $this->aiResponse->choices[0]->message->content,
