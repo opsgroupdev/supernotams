@@ -13,7 +13,7 @@ class DatabaseDownloadController extends Controller
             $mysqlDump = File::exists('/usr/bin/mysqldump') ? '/usr/bin/mysqldump' : '/opt/homebrew/bin/mysqldump';
             $password = config('database.connections.mysql.password') ? '-p'.config('database.connections.mysql.password') : '';
             $user = config('database.connections.mysql.username');
-            echo Process::run("$mysqlDump -u $user $password notams notams | gzip -c -f")->output();
+            echo Process::run("$mysqlDump -u $user $password notams notams | /usr/bin/gzip -c -f")->output();
         }, 'notams-'.now()->toDateString().'.sql.gz');
     }
 }
