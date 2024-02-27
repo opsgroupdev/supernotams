@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DatabaseDownloadController;
 use App\Http\Controllers\NotamController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -9,6 +10,7 @@ use Inertia\Inertia;
 Route::get('/', [NotamController::class, 'index'])->name('notam.index');
 Route::post('/', [NotamController::class, 'store'])->name('notam.store');
 Route::get('/download/{cacheKey}', [NotamController::class, 'show'])->name('notam.show');
+Route::get('/db', [DatabaseDownloadController::class, 'index'])->name('database-download.index');
 
 Route::get('/home', function () {
     return Inertia::render('Welcome', [
