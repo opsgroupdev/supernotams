@@ -44,6 +44,9 @@ jobs:
           max_attempts: 5
           command: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
 
+      - name: Copy environment file
+        run: cp .env.example .env
+
       - name: Generate app key
         run: php artisan key:generate
         
