@@ -70,3 +70,6 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/pest
+      
+      - name: Print laravel logs  
+        run: cat storage/logs/laravel*.log
