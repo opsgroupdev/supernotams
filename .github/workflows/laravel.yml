@@ -44,8 +44,8 @@ jobs:
           max_attempts: 5
           command: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
 
-      - name: List files
-        run: ls -R
+      - name: Generate app key
+        run: php artisan key:generate
         
       - name: Execute tests
         run: vendor/bin/pest
