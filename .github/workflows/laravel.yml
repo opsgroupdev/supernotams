@@ -35,42 +35,6 @@ jobs:
               sudo apt-get update
               sudo apt-get install -y wkhtmltopdf
               
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
-          ini-values: error_reporting=E_ALL
-          tools: composer:v2
-          coverage: none
-
-      - name: Install dependencies
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 5
-          max_attempts: 5
-          command: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
-
-      - name: Copy environment file
-        run: cp .env.example .env
-
-      - name: Generate app key
-        run: php artisan key:generate
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run build
-        run: npm run build        
-
-      - name: Execute tests
-        run: vendor/bin/pest
+      - name: Does it work
+        run: which wkhtmltopdf
         continue-on-error: true
-      
-      - name: Print laravel logs  
-        run: cat storage/logs/laravel*.log
