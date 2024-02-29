@@ -43,6 +43,8 @@ jobs:
           timeout_minutes: 5
           max_attempts: 5
           command: composer update --prefer-stable --prefer-dist --no-interaction --no-progress
-
+      - name: List files
+        run: ls -R
+        
       - name: Execute tests
         run: vendor/bin/pest
