@@ -74,6 +74,7 @@ it('can generate a proper notam briefing document', function () {
 
 it('sends error messages to the user', function () {
     Event::fake();
+    Log::shouldReceive('error')->once();
 
     NotamProcessingJob::dispatchSync('BAD FLIGHTPLAN', 'x10WI4RqH1t68qHIsLYzMteUVbogJX17foA5aNnR');
 
