@@ -73,4 +73,4 @@ jobs:
         continue-on-error: true
       
       - name: Print laravel logs  
-        run: cat storage/logs/laravel*.log 2>/dev/null
+        run: find storage/logs -name 'laravel*.log' -exec cat {} + 2>/dev/null
