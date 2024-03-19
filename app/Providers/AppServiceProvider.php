@@ -10,6 +10,11 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public array $bindings = [
+        NotamFetcher::class => NotamICAOFetcher::class,
+        NotamTagger::class  => NotamOpenAiTagger::class,
+    ];
+
     /**
      * Register any application services.
      */
@@ -23,7 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->app->bind(NotamFetcher::class, NotamICAOFetcher::class);
-        $this->app->bind(NotamTagger::class, NotamOpenAiTagger::class);
+        //
     }
 }

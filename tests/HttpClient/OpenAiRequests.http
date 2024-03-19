@@ -1,0 +1,93 @@
+# NotamSprint
+
+###
+# @name https://api.openai.com/v1/chat/completions
+POST https://api.openai.com/v1/chat/completions
+Authorization: Bearer {{openaikey}}
+Content-Type: application/json
+
+{
+  "model": "gpt-3.5-turbo",
+  "temperature": 0,
+  "max_tokens": 700,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a NOTAM Librarian. I will give you json_encoded NOTAM messages. Each notam has an identity key and content.\nCreate a JSON array object with the following 4 fields per notam:\n\"key\": The notam identity key.\n\"TagName\": Choose the most logical Tag for this NOTAM from the list of Tags.\n\"TagCode\": The code for the selected Tag Name.\n\"Explanation\": In very simple English only, explain the NOTAM in a maximum of seven words, use sentence case but do not use abbreviations.\n\n\nA json array of NOTAM Tags, each tag has three columns: 'Tag Code', 'Tag Name', 'Tag Description': \n\n[[\"P1\",\"Airport status\\/hours\",\"Airport Closed, Airport operating hours, AD AP not available\"],[\"P2\",\"Airport restriction\",\"Not available as alternate, airport slots, PPR required, max aircraft weight, etc.\"],[\"P3\",\"Fire & Rescue\",\"RFF Category change, Rescue equipment\"],[\"P4\",\"Fuel\",\"All fuel related NOTAMs, JET, JETA1, Avgas, Hydrants, Tankering\"],[\"P5\",\"Apron & Parking\",\"Apron, Stands, Gates, Follow me, Apron lighting, docking, guidance, limited parking\"],[\"P6\",\"Airport Facilities\",\"Equipment (GSE, Rwy\\/Twy equip, WDI etc.), Facilities Pax processing, airport strikes\"],[\"P7\",\"Airport Procedure\",\"Manoeuvring, Handling, Deboarding, APU usage etc. NABT and noise curfew\"],[\"P8\",\"WIP & Construction\",\"Work in Progress, WIP, Construction, Building works, digging, men and equipment\"],[\"A1\",\"Approach not available\",\"Instrument approach not available, suspended eg. ILS, VOR\\/DME approach, RNP approach, LPV.\"],[\"A2\",\"Approach degraded\",\"Some part of ILS not working, no circling, minima not available\"],[\"A3\",\"Approach change\",\"Chart change, Missed approach, RVR minima\"],[\"A4\",\"Arrival\",\"STAR (Standard Instrument Arrival), any changes to arrival\"],[\"A5\",\"Departure\",\"SID, SID not available. change, any changes to departures\"],[\"R1\",\"Runway closed\",\"Runway Closed\\/Hours\"],[\"R2\",\"Runway length\",\"TODA, TORA, ASDA, LDA changed, Displaced THR, CWY, Width change.\"],[\"R3\",\"Runway strength\",\"Runway PCN change, weight restriction.\"],[\"R4\",\"Runway lights\",\"Including ALS\\/Approach lights, Stopbars, PAPI, VASI\"],[\"R5\",\"Runway condition\",\"Poor surface, potholes, ungrooved, FOD, contamination (sand, ash), RWYCC\"],[\"R6\",\"Runway note\",\"Eg. Runway for Arrivals\\/Departures only, any other minor changes, runway reopened. Runway markings go here too, signs changed, missing, obscured. Building turbulence (Windshear)\"],[\"T1\",\"Taxiway closed\",\"TWY closed, All taxiway closures.\"],[\"T2\",\"Taxiway restriction\",\"Taxiway limited to specific aircraft weight\\/MTOW, entry points, one-way taxiways\"],[\"T3\",\"Taxiway lights\",\"TWY taxiway Lights\"],[\"T4\",\"Taxiway condition\",\"Poor surface, potholes\"],[\"T5\",\"Taxiway note\",\"Taxiway Signs, markings, New named, new taxiway, re-opened.\"],[\"C1\",\"ATC status\\/hours\",\"ATC operating hours, ATC Strike, ATC failure (ATC Zero). Including FIS\\/AFIS\"],[\"C2\",\"ATC procedure\",\"TWR\\/APP\\/ACC change of procedure, lost comms procedure, contingency, emergency, DCL departure clearance\"],[\"C3\",\"ATC flow and delay\",\"Flow control, enroute delays, expect holding\"],[\"C4\",\"Radio\",\"HF, VHF, CPDLC, Satcom, ATIS - u\\/s, freq changes etc. KHZ, MHZ.\"],[\"C5\",\"Radar & ADS\",\"Radar (PSR, MSSR, SMR, PAR, TAR), ADS (ADS-B, ADS-C) & MLAT\"],[\"C6\",\"Met\",\"Met service hours, VOLMET, Met Equipment, Met Strikes\"],[\"S1\",\"Route closed\",\"Airway, ATS Route closed\"],[\"S2\",\"Route restriction\",\"Airway, ATS Route Open but some restriction\"],[\"S3\",\"Route changed\",\"Change to ATS Route, Airway definition\"],[\"S4\",\"Special Use Airspace\",\"SUA's - Danger, Prohibited, Restricted, TRA\"],[\"S5\",\"Special Routes\",\"Conditional routes. CDR open\\/closed. CDR1, CDR2, CDR3. Track Systems: Preferred routing, flight level allocation scheme (FLAS), User Preferred Routings (UPR), AUSOTS, Pacific OTS, NAR, NAT Tracks\"],[\"S6\",\"Airspace structure\",\"Change to specific area, eg. CTR, TMA, FIR, coordinates\"],[\"S7\",\"Navaid status\",\"Navaids like VOR, NDB, TACAN. U\\/S, downgraded.\"],[\"H1\",\"Aircraft activity\",\"Air Display, Aerobatics, Balloon or Kite, Exercises, Air Refuelling, Glider, Paraglider, Hang Glider, Banner towing, Mass Movement of aircraft, Parachuting (PJE), Unmanned aircraft, Formation flight, Aerial Survey, Model Flying\"],[\"H2\",\"Explosives\",\"Fireworks, Blasting, Demolition of explosives, Burning gas\"],[\"H3\",\"Missile, Gun or Rocket Firing\",\"Military exercises involving any firing activity\"],[\"H4\",\"Obstacle - New\",\"OBST Newly erected Obstacle, Crane, Wind Farm, Turbines, LIT OBST\"],[\"H5\",\"Obstacle - Light out\",\"OBST Lights not working u\\/s Obstacle, Crane, Wind Farm, Turbines\"],[\"H6\",\"Wildlife\",\"Birds, animals\"],[\"H7\",\"GPS\",\"GPS outages, GPS jamming, RAIM, GNSS, EGNOS, WAAS\"],[\"L1\",\"Trigger Notam\",\"Trigger Notam pointing to AIRAC change, AIC Sup, etc.\"],[\"L2\",\"Checklist NOTAM\",\"Q-KKKK\\/Checklist of valid NOTAMs\"],[\"L3\",\"AIP Change\",\"Change to AIP. Use also for AIC related NOTAM\"],[\"L4\",\"AIP Chart Change\",\"Small chart change ie not AIP, including enroute charts.\"],[\"L5\",\"Flight Planning\",\"Flight planning requirements, Field 18 of FPL\"],[\"L6\",\"State Rule\",\"National notices, Covid rules, Turkey-Greece notams\"],[\"L7\",\"Security warnings\",\"Risk warnings, Conflict Zones, Security related NOTAM\"]]"
+    },
+    {
+      "role": "user",
+      "content": "[{\"id\":\"A1282\\\/23-EIDW\",\"content\":\"RWY 28L VOR-T INSTRUMENT APPROACH PROCEDURE (IAP) NOT AVAILABLE\\nREF AIP EIDW AD 2.24-45\\nCREATED: 19 May 2023 17:31:00 \\nSOURCE: EUECYIYN\"},{\"id\":\"A1281\\\/23-EIDW\",\"content\":\"RWY 28L RNP AND ILS INSTRUMENT APPROACH PROCEDURE NOT AVAILABLE\\nREF AIP EIDW 2.24-26, EIDW AD 2.24-27\\nCREATED: 19 May 2023 17:29:00 \\nSOURCE: EUECYIYN\"},{\"id\":\"A1280\\\/23-EIDW\",\"content\":\"TWY F-INNER UPGRADED TO CODE E TWY\\nTAXIWAY WIDTH 23M\\nSURFACE CONCRETE\\nPCN 100\\\/R\\\/B\\\/W\\\/T\\nREASON CRITICAL TWY PROJECT\\nREF AIP SUPPLEMENT 01\\\/2022\\nCREATED: 19 May 2023 08:04:00 \\nSOURCE: EUECYIYN\"},{\"id\":\"A1274\\\/23-EIDW\",\"content\":\"TWY P1 AND F-OUTER CLSD\\nREF AIP SUPPLEMENT 010\\\/2022\\nREASON CRITICAL TWY PROJECT\\nCREATED: 18 May 2023 16:08:00 \\nSOURCE: EUECYIYN\"},{\"id\":\"A1270\\\/23-EIDW\",\"content\":\"RWY 28L NOT AVAILABLE FOR DEPARTING AIRCRAFT.\\nREF AIP SUPPLEMENT 018\\\/2022\\nCREATED: 18 May 2023 08:31:00 \\nSOURCE: EUECYIYN\"}]"
+    }
+  ]
+}
+
+###
+# @name https://api.openai.com/v1/chat/completions
+POST https://api.openai.com/v1/chat/completions
+Authorization: Bearer {{openaikey}}
+Content-Type: application/json
+
+{
+  "model": "gpt-3.5-turbo",
+  "temperature": 0,
+  "max_tokens": 1300,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a NOTAM Librarian and classifier."
+    },
+    {
+      "role": "user",
+      "content": "I will send you multiple NOTAM messages. Each message starts with an identity key then a colon.\nCreate a JSON array object with the following 4 fields per notam:\n\"key\": The notam identity key.\n\"TagName\": Choose the most logical Tag for this NOTAM from the list of Tags.\n\"TagCode\": The code for the selected Tag Name.\n\"Explanation\": In very simple English only, explain the NOTAM in a maximum of seven words, use sentence case but do not use abbreviations. "
+    },
+    {
+      "role": "user",
+      "content": "The source json array of NOTAM Tags, each tag has three columns: 'Tag Code', 'Tag Name', 'Tag Description': \n\n[[\"P1\",\"Airport status\\/hours\",\"Airport Closed, Airport operating hours, AD AP not available\"],[\"P2\",\"Airport restriction\",\"Not available as alternate, airport slots, PPR required, max aircraft weight, etc.\"],[\"P3\",\"Fire & Rescue\",\"RFF Category change, Rescue equipment\"],[\"P4\",\"Fuel\",\"All fuel related NOTAMs, JET, JETA1, Avgas, Hydrants, Tankering\"],[\"P5\",\"Apron & Parking\",\"Apron, Stands, Gates, Follow me, Apron lighting, docking, guidance, limited parking\"],[\"P6\",\"Airport Facilities\",\"Equipment (GSE, Rwy\\/Twy equip, WDI etc.), Facilities Pax processing, airport strikes\"],[\"P7\",\"Airport Procedure\",\"Manoeuvring, Handling, Deboarding, APU usage etc. NABT and noise curfew\"],[\"P8\",\"WIP & Construction\",\"Work in Progress, WIP, Construction, Building works, digging, men and equipment\"],[\"A1\",\"Approach not available\",\"Instrument approach not available, suspended eg. ILS, VOR\\/DME approach, RNP approach, LPV.\"],[\"A2\",\"Approach degraded\",\"Some part of ILS not working, no circling, minima not available\"],[\"A3\",\"Approach change\",\"Chart change, Missed approach, RVR minima\"],[\"A4\",\"Arrival\",\"STAR (Standard Instrument Arrival), any changes to arrival\"],[\"A5\",\"Departure\",\"SID, SID not available. change, any changes to departures\"],[\"R1\",\"Runway closed\",\"Runway Closed\\/Hours\"],[\"R2\",\"Runway length\",\"TODA, TORA, ASDA, LDA changed, Displaced THR, CWY, Width change.\"],[\"R3\",\"Runway strength\",\"Runway PCN change, weight restriction.\"],[\"R4\",\"Runway lights\",\"Including ALS\\/Approach lights, Stopbars, PAPI, VASI\"],[\"R5\",\"Runway condition\",\"Poor surface, potholes, ungrooved, FOD, contamination (sand, ash), RWYCC\"],[\"R6\",\"Runway note\",\"Eg. Runway for Arrivals\\/Departures only, any other minor changes, runway reopened. Runway markings go here too, signs changed, missing, obscured. Building turbulence (Windshear)\"],[\"T1\",\"Taxiway closed\",\"TWY closed, All taxiway closures.\"],[\"T2\",\"Taxiway restriction\",\"Taxiway limited to specific aircraft weight\\/MTOW, entry points, one-way taxiways\"],[\"T3\",\"Taxiway lights\",\"TWY taxiway Lights\"],[\"T4\",\"Taxiway condition\",\"Poor surface, potholes\"],[\"T5\",\"Taxiway note\",\"Taxiway Signs, markings, New named, new taxiway, re-opened.\"],[\"C1\",\"ATC status\\/hours\",\"ATC operating hours, ATC Strike, ATC failure (ATC Zero). Including FIS\\/AFIS\"],[\"C2\",\"ATC procedure\",\"TWR\\/APP\\/ACC change of procedure, lost comms procedure, contingency, emergency, DCL departure clearance\"],[\"C3\",\"ATC flow and delay\",\"Flow control, enroute delays, expect holding\"],[\"C4\",\"Radio\",\"HF, VHF, CPDLC, Satcom, ATIS - u\\/s, freq changes etc. KHZ, MHZ.\"],[\"C5\",\"Radar & ADS\",\"Radar (PSR, MSSR, SMR, PAR, TAR), ADS (ADS-B, ADS-C) & MLAT\"],[\"C6\",\"Met\",\"Met service hours, VOLMET, Met Equipment, Met Strikes\"],[\"S1\",\"Route closed\",\"Airway, ATS Route closed\"],[\"S2\",\"Route restriction\",\"Airway, ATS Route Open but some restriction\"],[\"S3\",\"Route changed\",\"Change to ATS Route, Airway definition\"],[\"S4\",\"Special Use Airspace\",\"SUA's - Danger, Prohibited, Restricted, TRA\"],[\"S5\",\"Special Routes\",\"Conditional routes. CDR open\\/closed. CDR1, CDR2, CDR3. Track Systems: Preferred routing, flight level allocation scheme (FLAS), User Preferred Routings (UPR), AUSOTS, Pacific OTS, NAR, NAT Tracks\"],[\"S6\",\"Airspace structure\",\"Change to specific area, eg. CTR, TMA, FIR, coordinates\"],[\"S7\",\"Navaid status\",\"Navaids like VOR, NDB, TACAN. U\\/S, downgraded.\"],[\"H1\",\"Aircraft activity\",\"Air Display, Aerobatics, Balloon or Kite, Exercises, Air Refuelling, Glider, Paraglider, Hang Glider, Banner towing, Mass Movement of aircraft, Parachuting (PJE), Unmanned aircraft, Formation flight, Aerial Survey, Model Flying\"],[\"H2\",\"Explosives\",\"Fireworks, Blasting, Demolition of explosives, Burning gas\"],[\"H3\",\"Missile, Gun or Rocket Firing\",\"Military exercises involving any firing activity\"],[\"H4\",\"Obstacle - New\",\"OBST Newly erected Obstacle, Crane, Wind Farm, Turbines, LIT OBST\"],[\"H5\",\"Obstacle - Light out\",\"OBST Lights not working u\\/s Obstacle, Crane, Wind Farm, Turbines\"],[\"H6\",\"Wildlife\",\"Birds, animals\"],[\"H7\",\"GPS\",\"GPS outages, GPS jamming, RAIM, GNSS, EGNOS, WAAS\"],[\"L1\",\"Trigger Notam\",\"Trigger Notam pointing to AIRAC change, AIC Sup, etc.\"],[\"L2\",\"Checklist NOTAM\",\"Q-KKKK\\/Checklist of valid NOTAMs\"],[\"L3\",\"AIP Change\",\"Change to AIP. Use also for AIC related NOTAM\"],[\"L4\",\"AIP Chart Change\",\"Small chart change ie not AIP, including enroute charts.\"],[\"L5\",\"Flight Planning\",\"Flight planning requirements, Field 18 of FPL\"],[\"L6\",\"State Rule\",\"National notices, Covid rules, Turkey-Greece notams\"],[\"L7\",\"Security warnings\",\"Risk warnings, Conflict Zones, Security related NOTAM\"]]"
+    },
+    {
+      "role": "user",
+      "content": "A1214/23-EIKY: AERODROME HOURS OF SERVICE \nMON  0500 TO 1800\nTUE  0800 TO 1715\nWED  0500 TO 1715\nTHU  0800 TO 1800\nFRI  0600 TO 1715\nSAT  0800 TO 1715\nSUN  0800 TO 1715\nCREATED: 12 May 2023 15:17:00 \nSOURCE: EUECYIYN"
+    },
+    {
+      "role": "user",
+      "content": "A1172/23-EIKY: EIKY LPV APPROACHES UNAVAILABLE\nREF RNP RWY 26 CHART EIKY AD 2.24-7.1\nREF RNP RWY 08 CHART EIKY AD 2.24-10.1\nCREATED: 09 May 2023 10:40:00 \nSOURCE: EUECYIYN"
+    },
+    {
+      "role": "user",
+      "content": "A0798/23-EIKY: AERODROME OPERATING MINIMA CHANGED TO\nOCA/H STRAIGHT IN APPROACH CAT A 274 (162), CAT B 282 (170), CAT C \n292 (180), LOC CAT A,B,C 510 (398)\nOCA/H VISUAL MANOEUVRING AREA CAT A 1100 (988), CAT B 1200 (1088), \nCAT C 1500 (1388), NORTH OF RWY CAT A AND CAT B 700 (588), CAT C \n1040 (928)\nREF AIP EIKY AD 2.24-8.1 ILS OR LOC RWY 26\nCREATED: 06 Apr 2023 09:27:00 \nSOURCE: EUECYIYN"
+    },
+    {
+      "role": "user",
+      "content": "B0554/23-EIKY: FIX CO-ORDINATES KY012 AND KY013 PUBLISHED INCORRECTLY SHOULD \nREAD:  KY012/SDF 521237.7N / 0092253.3W          \nKY013/SDF 521159.3N / 0092558.2W\nREF CHART EIKY AD 2.24-9 NDB RWY 26\nCREATED: 16 May 2023 13:09:00 \nSOURCE: EUECYIYN"
+    },
+    {
+      "role": "user",
+      "content": "B0534/23-EIKY: KERRY CTR HOURS OF SERVICE \nMON 0500-1800\nTUE 0800-1715\nWED 0500-1715\nTHU 0800-1800\nFRI 0600-1715\nSAT 0800-1715\nSUN 0800-1715\nCREATED: 12 May 2023 15:14:00 \nSOURCE: EUECYIYN"
+    },
+    {
+      "role": "user",
+      "content": "B0435/22-EIKY: MAGNETIC VARIATION AT KERRY AIRPORT IS CHANGED TO 3 DEGREES\nREF AIP EIKY AD 2.24 ALL CHARTS RELATED TO THE AERODROME AFFECTED\nCREATED: 08 Apr 2022 09:02:00 \nSOURCE: EUECYIYN"
+    },
+    {
+      "role": "user",
+      "content": "N0046/23-EIKY: TOWER CRANES OPERATING AT MTU KERRY NORTH CAMPUS, TRALEE\nPOSITION 521710.8N 0094026.9W HEIGHT 197FT/ELEVATION 394FT\nOBSTACLE LIGHTED\nCREATED: 26 Apr 2023 11:12:00 \nSOURCE: EUECYIYN"
+    },
+    {
+      "role": "user",
+      "content": "A1158/23-EINN: VOR RWY 06 INSTRUMENT APPROACH PROCEDURE MINIMA OCA(H) INCREASED \nDUE ERECTION OF CRANE \nSTRAIGHT IN APPROACH 440(394)\nVISUAL MANOEUVRING \nCAT A/B 640 (594)\nCAT C/D 740 (694)\nREF AIP EINN AD 2.24-11\nCREATED: 08 May 2023 16:27:00 \nSOURCE: EUECYIYN"
+    },
+    {
+      "role": "user",
+      "content": "A0419/23-EINN: SID DIGAN3A\nSID TOMTO3A NOT AVAILABLE\nREF EINN AD 2.24-5.1\nCREATED: 27 Feb 2023 11:16:00 \nSOURCE: EUECYIYN"
+    },
+    {
+      "role": "user",
+      "content": "B0432/23-EINN: ONLINE FLIGHT PLANNING, IAIP IRELAND AND THE PIB WILL BE \nAVAILABLE \nON WWW.AIRNAV.IE FROM 27 APRIL 2023 AT 1300 UTC\nREF AIC 003/23\nCREATED: 26 Apr 2023 10:19:00 \nSOURCE: EUECYIYN"
+    },
+    {
+      "role": "user",
+      "content": "B1142/15-EINN: HOLDING PROCEDURE CHANGED. RATE OF DESCENT IN HOLDING PATTERNS \nAMENDED TO: A STANDARD RATE OF DESCENT OF 1000FT PER MIN IN HOLDING \nPATTERNS WILL BE USED UNLESS OTHERWISE INSTRUCTED BY ATC. PILOTS \nMUST ADVISE ATC IF UNABLE TO COMPLY WITH THE STANDARD RATE OF \nDESCENT.\nREF AIP EINN AD 2.22 SECTION 9\nCREATED: 01 May 2017 11:24:00 \nSOURCE: EUECYIYN"
+    }
+  ]
+}

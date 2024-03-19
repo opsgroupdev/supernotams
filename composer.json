@@ -2,36 +2,35 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "barryvdh/laravel-snappy": "^1.0",
-        "beyondcode/laravel-websockets": "^1.14",
         "gioni06/gpt3-tokenizer": "^1.2",
         "guzzlehttp/guzzle": "^7.2",
-        "inertiajs/inertia-laravel": "^0.6.8",
-        "laravel/framework": "^10.8",
+        "inertiajs/inertia-laravel": "^1.0",
+        "laravel/framework": "^11.0",
         "laravel/horizon": "^5.15",
         "laravel/pulse": "^1.0@beta",
-        "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.8",
+        "laravel/reverb": "@beta",
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^2.9",
         "openai-php/laravel": "^0.8.1",
-        "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-data": "^4.1",
         "spatie/regex": "^3.1",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9.1",
-        "laravel/breeze": "^1.21",
-        "laravel/pint": "^1.10",
-        "laravel/sail": "^1.18",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^7.0",
+        "fakerphp/faker": "^1.23",
+        "laravel/breeze": "^2.0",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.26",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.1",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
-        "spatie/laravel-ignition": "^2.0"
+        "spatie/laravel-ignition": "^2.4"
     },
     "autoload": {
         "psr-4": {
@@ -57,7 +56,9 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
         ]
     },
     "extra": {

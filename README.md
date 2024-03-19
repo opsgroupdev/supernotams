@@ -1,88 +1,66 @@
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+
 <p align="center">
-  <img src="public/images/just-notams-logo-210.png" alt="Notams Logo">
-  <br/>
-  <br>WITH<br>
-  <a href="https://laravel.com" target="_blank">
-    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
-</a>
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## About Laravel
 
-# FixingNotams
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## Overview
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-FixingNotams is a Laravel project aimed at improving the pilot's experience with NOTAMs (Notice to Airmen) during their briefings. This project was developed as a result of a [coding sprint](https://fixingnotams.org/notam-sprint/) that focused on finding solutions to enhance the sourcing, tagging, and filtering of NOTAMs based on airport types. The sprint has concluded, and this README provides a concise review of the project and instructions for getting started.
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Sprint Recap
+## Learning Laravel
 
-During the sprint, the team tackled key challenges associated with NOTAM processing. The following solutions were developed:
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-1. **Sourcing of NOTAMs**: The project includes a mechanism to efficiently source NOTAMs from relevant authorities or data providers. This ensures the availability of up-to-date information for processing.
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-2. **Tagging System**: A comprehensive set of tags was created to categorize NOTAMs based on their nature. These tags cover various aspects, including ATC, Airport, Approach, Runway, Taxiway, Navigation, Airspace, Hazards, and Library. The tagging system allows for precise identification and organization of NOTAMs.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-3. **Filtering Logic**: A matrix-based filtering mechanism was implemented to determine the visibility of NOTAMs based on the type of airport. This ensures that the displayed NOTAMs are relevant to the specific airport context, providing a more streamlined and focused briefing experience.
+## Laravel Sponsors
 
-## Project Details
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-FixingNotams is a Laravel project that leverages the power of websockets to keep users continuously updated with the current status of pack generation. To ensure real-time updates, a webhook server must be set up and active for the project to function properly.
+### Premium Partners
 
-## Installation and Setup
-
-To download and get started with the FixingNotams project, follow these steps:
-
-1. Clone the repository to your local machine:
-
-   ```
-   git clone https://github.com/jonnywilliamson/notams.git
-   ```
-
-2. Install the project dependencies using Composer:
-
-   ```
-   composer install
-   ```
-
-3. Configure the environment variables by renaming the `.env.example` file to `.env` and updating the necessary values. 
-   ```
-   **Important** The notam source (ICAO) api key, the openai key and websockets section at the end of the file must be complete and correct for the project to work.
-   ```
-
-4. Generate an application key:
-
-   ```
-   php artisan key:generate
-   ```
-
-5. Set up the database by executing the migrations:
-
-   ```
-   php artisan migrate
-   ```
-
-6. Run the development server:
-
-   ```
-   php artisan serve
-   ```
-
-7. Set up the webhook server with your details to enable real-time updates. [Refer to the documentation](https://beyondco.de/docs/laravel-websockets/getting-started/introduction) for the specific steps and requirements related to webhook setup.
-
-8. Access the FixingNotams application in your web browser at `http://localhost:8000` (or the specified URL).
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
 
 ## Contributing
 
-Contributions to FixingNotams are welcome! If you encounter any issues or have ideas for improvements, please submit them via GitHub issues. You can also contribute by opening pull requests with your proposed changes.
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
-FixingNotams is software licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/legalcode). Feel free to use, modify, and distribute this project as per the terms of the license.
-
-## Support
-
-If you need any assistance or have questions about FixingNotams, please reach out to the project maintainers or the community via the GitHub repository's issue tracker.
-
-## Acknowledgements
-
-We would like to express our gratitude to all the contributors and participants who made the FixingNotams project possible. Your dedication and efforts have played a significant role in advancing the field of NOTAM processing. Thank you for your valuable contributions!
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
