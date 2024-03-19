@@ -27,4 +27,9 @@ class NotamResultEvent implements ShouldBroadcast
     {
         return new Channel($this->channelName);
     }
+
+    public function broadcastAs(): string
+    {
+        return 'notam.pack.result';
+    }
 }

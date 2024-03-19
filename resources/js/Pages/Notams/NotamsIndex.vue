@@ -23,14 +23,14 @@ let expandedNotam = ref(null);
 
 onMounted(() => {
     Echo.channel(props.session_id)
-        .listen("\\App\\Events\\NotamProcessingEvent", (event) => {
+        .listen(".notam.pack.processing", (event) => {
             progressMessage.value.push({message: event.message, type: event.type});
             scrollToLatestUpdate();
         })
-        .listen("\\App\\Events\\NotamResultEvent", (event) => {
+        .listen(".notam.pack.result", (event) => {
             result.value = event.data;
         })
-        .listen("\\App\\Events\\PdfResultEvent", (event) => {
+        .listen(".notam.pdf.result", (event) => {
             fileKey.value = event.key;
         });
 });

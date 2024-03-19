@@ -27,4 +27,9 @@ class PdfResultEvent implements ShouldBroadcast
     {
         return new Channel($this->channelName);
     }
+
+    public function broadcastAs(): string
+    {
+        return 'notam.pdf.result';
+    }
 }
