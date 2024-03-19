@@ -15,6 +15,9 @@ class AppServiceProvider extends ServiceProvider
         NotamTagger::class  => NotamOpenAiTagger::class,
     ];
 
+    public array $singletons = [
+    ];
+
     /**
      * Register any application services.
      */

@@ -150,5 +150,5 @@ EOL;
 
     $answer = $response->choices[0]->message;
     Log::info('Chat GPT', [$response->toArray()]);
-});
-//    ->skip()
+})
+    ->skip();

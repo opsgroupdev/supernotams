@@ -15,7 +15,7 @@ Route::get('/db', [DatabaseDownloadController::class, 'index'])->name('database-
 Route::get('/home', function () {
     return Inertia::render('Welcome', [
         'canLogin'       => Route::has('login'),
-        'canRegister'    => false,
+        'canRegister'    => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion'     => PHP_VERSION,
     ]);
