@@ -20,11 +20,14 @@ class NotamController extends Controller
 
     public function store(Request $request)
     {
+        \Log::info('About to validate input');
         $validated = $request->validate([
             'flight_plan' => ['required', 'string', new IsAtcFlightPlan],
         ]);
 
+        \Log::info('About to dispatch Processing job');
         NotamProcessingJob::dispatch($validated['flight_plan'], Session::getId());
+        \Log::info('Dispatched Processing job');
         //        return redirect()->route('notam.index');
     }
 
