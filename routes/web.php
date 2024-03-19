@@ -7,11 +7,13 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+//These routes are the main entry point for this Notam app.
 Route::get('/', [NotamController::class, 'index'])->name('notam.index');
 Route::post('/', [NotamController::class, 'store'])->name('notam.store');
 Route::get('/download/{cacheKey}', [NotamController::class, 'show'])->name('notam.show');
 Route::get('/db', [DatabaseDownloadController::class, 'index'])->name('database-download.index');
 
+//All routes below are the boilerplate for logins and profiles etc.
 Route::get('/home', function () {
     return Inertia::render('Welcome', [
         'canLogin'       => Route::has('login'),

@@ -4,7 +4,7 @@ use App\Enum\Airports;
 use App\Jobs\NotamRequestJob;
 use Illuminate\Support\Facades\Schedule;
 
-//For demo purposes we are only getting notams for irish and uk airports.
+//For demo purposes we are only getting notams for irish, uk, Aus and NZ airports.
 //In real life we would connect to an api that would provide all
 //new notams for all world airports.
 Schedule::job(new NotamRequestJob(Airports::BATCH1))
