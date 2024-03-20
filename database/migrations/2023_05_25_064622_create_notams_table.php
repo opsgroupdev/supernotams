@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->text('summary')->nullable();
             $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('llm')->nullable();
             $table->json('source');
             $table->timestamps();
         });
