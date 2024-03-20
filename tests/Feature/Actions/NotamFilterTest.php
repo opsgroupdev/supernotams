@@ -52,13 +52,13 @@ it('sorts notams into primary and appendix categories in the correct order', fun
     $notamFilter = new NotamFilter();
     $results = $notamFilter->filter($airports, $taggedNotams);
 
-    expect($results['primary']['departureAirport']['EGAA']->pluck('code'))->toMatchArray(['P3', 'A2', 'A4', 'R1', 'R2', 'R3', 'C4']);
-    expect($results['primary']['destinationAirport']['EIDW']->pluck('code'))->toMatchArray(['A1', 'A2', 'A3', 'R1', 'R2', 'R4']);
-    expect($results['primary']['destinationAlternates']['EINN']->pluck('code'))->toMatchArray(['A1', 'A3', 'A5', 'R1', 'R2', 'R4']);
-    expect($results['primary']['destinationAlternates']['EIKN']->pluck('code'))->toMatchArray(['P3', 'A2', 'R4']);
+    expect(collect($results['primary']['departureAirport']['EGAA'])->pluck('code'))->toMatchArray(['P3', 'A2', 'A4', 'R1', 'R2', 'R3', 'C4']);
+    expect(collect($results['primary']['destinationAirport']['EIDW'])->pluck('code'))->toMatchArray(['A1', 'A2', 'A3', 'R1', 'R2', 'R4']);
+    expect(collect($results['primary']['destinationAlternates']['EINN'])->pluck('code'))->toMatchArray(['A1', 'A3', 'A5', 'R1', 'R2', 'R4']);
+    expect(collect($results['primary']['destinationAlternates']['EIKN'])->pluck('code'))->toMatchArray(['P3', 'A2', 'R4']);
 
-    expect($results['appendix']['departureAirport']['EGAA']->pluck('code'))->toMatchArray(['H5', 'L2', 'H1']);
-    expect($results['appendix']['destinationAirport']['EIDW']->pluck('code'))->toMatchArray(['B1', 'L2', 'D3', 'A6']);
-    expect($results['appendix']['destinationAlternates']['EINN']->pluck('code'))->toMatchArray(['L2', 'H2', 'H3']);
-    expect($results['appendix']['destinationAlternates']['EIKN']->pluck('code'))->toMatchArray(['H2', 'S1']);
+    expect(collect($results['appendix']['departureAirport']['EGAA'])->pluck('code'))->toMatchArray(['H5', 'L2', 'H1']);
+    expect(collect($results['appendix']['destinationAirport']['EIDW'])->pluck('code'))->toMatchArray(['B1', 'L2', 'D3', 'A6']);
+    expect(collect($results['appendix']['destinationAlternates']['EINN'])->pluck('code'))->toMatchArray(['L2', 'H2', 'H3']);
+    expect(collect($results['appendix']['destinationAlternates']['EIKN'])->pluck('code'))->toMatchArray(['H2', 'S1']);
 });
