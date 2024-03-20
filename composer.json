@@ -7,7 +7,6 @@
     "require": {
         "php": "^8.2",
         "barryvdh/laravel-snappy": "^1.0",
-        "gioni06/gpt3-tokenizer": "^1.2",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^1.0",
         "laravel/breeze": "^2.0",
