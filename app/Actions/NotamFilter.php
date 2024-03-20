@@ -51,11 +51,12 @@ class NotamFilter
 
         //Rearrange the notams based on the order specified in the matrix
         $this->primaryNotams[$locationType][$icaoCode] = $filteredNotams
-            ->sortBy(fn ($notam) => $applicableCodes->search($notam['code']))->values();
+            ->sortBy(fn ($notam) => $applicableCodes->search($notam['code']))->values()->toArray();
 
         //Now let's add ALL left over notams not used in the Primary section to the Appendix section.
         $this->appendixNotams[$locationType][$icaoCode] = $notamsForIcaoLocation
             ->diffKeys($filteredNotams)
-            ->values();
+            ->values()
+            ->toArray();
     }
 }
