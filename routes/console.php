@@ -45,3 +45,5 @@ Schedule::job(new NotamRequestJob(Airports::BATCH_FIRS_5))
 
 Schedule::job(new NotamRequestJob(Airports::BATCH_FIRS_6))
     ->hourlyAt(['01']);
+
+Schedule::command('model:prune')->hourly();
