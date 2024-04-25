@@ -106,6 +106,11 @@ enum Tag
 
     case L7;
 
+    public function fullLabel(): string
+    {
+        return $this->category().' – '.$this->label();
+    }
+
     public function category(): string
     {
         return match (substr($this->name, 0, 1)) {
@@ -120,7 +125,7 @@ enum Tag
         };
     }
 
-    public function type(): string
+    public function label(): string
     {
         return match ($this->name) {
             'P1' => 'Airport status/hours',

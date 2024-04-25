@@ -12,7 +12,7 @@ class Tags
         return collect(Enum::cases())
             ->map(fn (Enum $tag) => [
                 $tag->name,
-                $tag->type(),
+                $tag->label(),
                 $tag->description(),
             ]);
     }
