@@ -13,6 +13,7 @@
         <x-heroicon-s-user-circle class="h-8 w-8 flex-none text-gray-500" />
         <form
             wire:submit="parse"
+            wire:keydown.meta.enter="parse"
             class="flex-auto"
         >
             <x-playground.input-group>
@@ -29,6 +30,7 @@
                             wire:loading
                         />
                         Parse NOTAM
+                        <kbd class="hidden md:inline-flex ml-1.5 items-center font-sans text-xs text-gray-400">⌘⏎</kbd>
                     </button>
                 </x-slot:actions>
             </x-playground.input-group>
