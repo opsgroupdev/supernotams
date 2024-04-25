@@ -18,11 +18,10 @@
         >
             <x-playground.input-group>
                 <x-slot:actions>
-                    <button
+                    <x-button.secondary
+                        size="sm"
                         type="submit"
                         wire:target="parse"
-                        wire:loading.attr="disabled"
-                        class="shrink-0 inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                     >
                         <x-spinner
                             class="size-4 mr-2 text-gray-700"
@@ -31,7 +30,7 @@
                         />
                         Parse NOTAM
                         <kbd class="hidden md:inline-flex ml-1.5 items-center font-sans text-xs text-gray-400">⌘⏎</kbd>
-                    </button>
+                    </x-button.secondary>
                 </x-slot:actions>
             </x-playground.input-group>
         </form>
