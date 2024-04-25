@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -27,8 +28,44 @@ uses(TestCase::class, RefreshDatabase::class)->in('Feature');
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
+expect()->extend('toPassWith', function (mixed $value) {
+    $rule = $this->value;
+
+    if (! $rule instanceof ValidationRule) {
+        throw new Exception('Value is not a validation rule');
+    }
+
+    $passed = true;
+
+    $fail = function () use (&$passed) {
+        $passed = false;
+    };
+
+    $rule->validate('attribute', $value, $fail);
+
+    expect($passed)->toBeTrue();
+});
+
+expect()->extend('toFailWith', function (mixed $value, string $expectedMessage = '') {
+    $rule = $this->value;
+
+    if (! $rule instanceof ValidationRule) {
+        throw new Exception('Value is not an invokable rule');
+    }
+
+    $passed = true;
+    $message = '';
+
+    $fail = function (string $error) use (&$passed, &$message) {
+        $passed = false;
+        $message = $error;
+    };
+
+    $rule->validate('attribute', $value, $fail);
+
+    expect($passed)->toBeFalse()
+        ->and($message)->toContain($expectedMessage);
+
 });
 
 /*

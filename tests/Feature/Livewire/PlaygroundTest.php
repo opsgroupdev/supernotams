@@ -3,6 +3,7 @@
 use App\Livewire\Playground;
 use App\Models\PlaygroundNotam;
 use App\Models\PlaygroundSession;
+use App\Rules\Ita2CharsetRule;
 
 use function Pest\Laravel\get;
 
@@ -63,6 +64,7 @@ it('validates user input', function (string $rule, mixed $input) {
 })->with([
     ['required', ''],
     ['min:5', 'FOO'],
+    [Ita2CharsetRule::class, 'FOO *** BAR %%'],
 ]);
 
 it('parses a NOTAM and displays the AI generated result', function () {

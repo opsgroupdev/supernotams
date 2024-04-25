@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Rules\Ita2CharsetRule;
 use Livewire\Form;
 
 class PlaygroundForm extends Form
@@ -14,6 +15,7 @@ class PlaygroundForm extends Form
             'notam' => [
                 'required',
                 'min:5',
+                new Ita2CharsetRule,
             ],
         ];
     }
