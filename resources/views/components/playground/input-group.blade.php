@@ -27,6 +27,8 @@
             @enderror
         </div>
 
-        {{ $actions }}
+        <div class="flex items-center space-x-2">
+            {{ $actions }}
+        </div>
     </div>
 </div>
