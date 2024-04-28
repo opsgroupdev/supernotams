@@ -10,7 +10,7 @@
             wire:loading.attr="readonly"
             class="block w-full resize-none border-0 bg-transparent py-2 text-gray-900 placeholder:text-gray-400 focus:ring-0"
             placeholder="Paste in a NOTAM to play with…"
-            oninput="this.value = this.value.toUpperCase()"
+            oninput="let p = this.selectionStart; this.value = this.value.toUpperCase(); this.setSelectionRange(p, p);"
             x-ref="input"
             @error('form.notam')
             aria-invalid="true" aria-describedby="notam-error"
