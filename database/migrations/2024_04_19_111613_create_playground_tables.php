@@ -10,13 +10,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('playground_sessions', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->ipAddress()->nullable();
             $table->timestamps();
         });
 
         Schema::create('playground_notams', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->foreignIdFor(PlaygroundSession::class, 'session_id');
             $table->text('text');
             $table->string('tag', 2)->nullable();
